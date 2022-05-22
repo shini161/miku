@@ -25,6 +25,9 @@ export default new Command({
         break;
       case message.author.id:
         text = [`${message.author.username}, how can you kiss yourself?`];
+        images = [
+          "https://media1.tenor.com/images/72bfd912fa78d4ea2337c8b62ab3e899/tenor.gif",
+        ];
         return sendEmbed(text, images);
         break;
       default:
