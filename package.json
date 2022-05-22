@@ -1,7 +1,7 @@
 {
   "name": "miku",
   "version": "1.0.0",
-  "description": "",
+  "description": "Just a multi-purpose discord-bot",
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
