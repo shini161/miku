@@ -1,10 +1,4 @@
-import {
-  ApplicationCommand,
-  ChatInputApplicationCommandData,
-  GuildMember,
-  Message,
-  PermissionResolvable,
-} from "discord.js";
+import { ApplicationCommand, GuildMember, Message } from "discord.js";
 import { ExtendedClient } from "../structures/Client";
 
 export interface ExtendedCommand extends ApplicationCommand {
@@ -21,6 +15,7 @@ type RunFunction = (options: RunOptions) => any;
 
 export type CommandType = {
   name: string;
+  usages?: string;
   aliases?: string[];
   required?: boolean;
   run: RunFunction;
