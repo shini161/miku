@@ -1,0 +1,112 @@
+{
+  "delete": {
+    "value": 1,
+    "channel": "messagechannel",
+    "nameOnSettings": "Deleted Messages"
+  },
+  "edit": {
+    "value": 2,
+    "channel": "messagechannel",
+    "nameOnSettings": "Edited Messages"
+  },
+  "purge": {
+    "value": 4,
+    "channel": "messagechannel",
+    "nameOnSettings": "Purged Messages"
+  },
+  "role": {
+    "value": 8,
+    "channel": "memberchannel",
+    "nameOnSettings": "Member Roles"
+  },
+  "name": {
+    "value": 16,
+    "channel": "memberchannel",
+    "nameOnSettings": "Name updates"
+  },
+  "avatar": {
+    "value": 32,
+    "channel": "memberchannel",
+    "nameOnSettings": "Avatar Updates"
+  },
+  "ban": {
+    "value": 64,
+    "channel": "memberchannel",
+    "nameOnSettings": "Bans"
+  },
+  "unban": {
+    "value": 128,
+    "channel": "memberchannel",
+    "nameOnSettings": "Unbans"
+  },
+  "join": {
+    "value": 256,
+    "channel": "joinchannel",
+    "nameOnSettings": "Joins"
+  },
+  "leave": {
+    "value": 512,
+    "channel": "joinchannel",
+    "nameOnSettings": "Leaves"
+  },
+  "channelcreate": {
+    "value": 1024,
+    "channel": "serverchannel",
+    "nameOnSettings": "Channel Creation"
+  },
+  "channelupdate": {
+    "value": 2048,
+    "channel": "serverchannel",
+    "nameOnSettings": "Channel Updates"
+  },
+  "channeldelete": {
+    "value": 4096,
+    "channel": "serverchannel",
+    "nameOnSettings": "Channel Deletion"
+  },
+  "rolecreate": {
+    "value": 8192,
+    "channel": "serverchannel",
+    "nameOnSettings": "Role Creation"
+  },
+  "roleupdate": {
+    "value": 16384,
+    "channel": "serverchannel",
+    "nameOnSettings": "Role Updates"
+  },
+  "roledelete": {
+    "value": 32768,
+    "channel": "serverchannel",
+    "nameOnSettings": "Role Deletion"
+  },
+  "emoji": {
+    "value": 65536,
+    "channel": "serverchannel",
+    "nameOnSettings": "Emoji events"
+  },
+  "sticker": {
+    "value": 131072,
+    "channel": "serverchannel",
+    "nameOnSettings": "Sticker events"
+  },
+  "server": {
+    "value": 262144,
+    "channel": "serverchannel",
+    "nameOnSettings": "Server Updates"
+  },
+  "voicejoin": {
+    "value": 524288,
+    "channel": "voicechannel",
+    "nameOnSettings": "Voice Join"
+  },
+  "voicemove": {
+    "value": 1048576,
+    "channel": "voicechannel",
+    "nameOnSettings": "Voice Move"
+  },
+  "voiceleave": {
+    "value": 2097152,
+    "channel": "voicechannel",
+    "nameOnSettings": "Voice Leave"
+  }
+}

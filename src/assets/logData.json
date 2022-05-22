@@ -1,0 +1,114 @@
+{
+  "delete": {
+    "value": 1,
+    "description": "Deleted Messages"
+  },
+  "msgdel": {
+    "value": 1,
+    "description": "Deleted Messages"
+  },
+  "edit": {
+    "value": 2,
+    "description": "Edited Messages"
+  },
+  "purge": {
+    "value": 4,
+    "description": "Purged Messages"
+  },
+  "message": {
+    "value": 7,
+    "description": "All message events"
+  },
+  "role": {
+    "value": 8,
+    "description": "Member Roles"
+  },
+  "name": {
+    "value": 16,
+    "description": "Name updates"
+  },
+  "avatar": {
+    "value": 32,
+    "description": "Avatar Updates"
+  },
+  "ban": {
+    "value": 64,
+    "description": "Bans"
+  },
+  "unban": {
+    "value": 128,
+    "description": "Unbans"
+  },
+  "bans": {
+    "value": 196,
+    "description": "Bans and unbans"
+  },
+  "join": {
+    "value": 256,
+    "description": "Joins"
+  },
+  "leave": {
+    "value": 512,
+    "description": "Leaves"
+  },
+  "channelcreate": {
+    "value": 1024,
+    "description": "Channel Creation"
+  },
+  "channelupdate": {
+    "value": 2048,
+    "description": "Channel Updates"
+  },
+  "channeldelete": {
+    "value": 4096,
+    "description": "Channel Deletion"
+  },
+  "allchannels": {
+    "value": 7168,
+    "description": "All channel events"
+  },
+  "rolecreate": {
+    "value": 8192,
+    "description": "Role Creation"
+  },
+  "roleupdate": {
+    "value": 16384,
+    "description": "Role Updates"
+  },
+  "roledelete": {
+    "value": 32768,
+    "description": "Role Deletion"
+  },
+  "allroles": {
+    "value": 57344,
+    "description": "All role events"
+  },
+  "emoji": {
+    "value": 65536,
+    "description": "Emoji events"
+  },
+  "sticker": {
+    "value": 131072,
+    "description": "Sticker events"
+  },
+  "server": {
+    "value": 262144,
+    "description": "Server Updates"
+  },
+  "voicejoin": {
+    "value": 524288,
+    "description": "Voice Join"
+  },
+  "voicemove": {
+    "value": 1048576,
+    "description": "Voice Move"
+  },
+  "voiceleave": {
+    "value": 2097152,
+    "description": "Voice Leave"
+  },
+  "voice": {
+    "value": 3670016,
+    "description": "All voice events"
+  }
+}
