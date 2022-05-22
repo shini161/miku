@@ -13,7 +13,7 @@ export default new Command({
     let text: string[];
     let images: string[] = ActionData[name].images;
     const color = Colors.celestialBlue;
-    const target = message.mentions.users.first();
+    const target = message.mentions.members.first();
 
     switch (target?.id) {
       case undefined:
@@ -26,7 +26,7 @@ export default new Command({
         break;
       default:
         text = [
-          `${message.author.username} disagrees with ${target.username}.`,
+          `${message.author.username} disagrees with ${target.user.username}.`,
         ];
         return sendEmbed(text, images);
     }
