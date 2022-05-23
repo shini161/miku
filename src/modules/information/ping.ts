@@ -12,11 +12,10 @@ export default new Command({
     const botLatency = Math.floor(
       msg.createdAt.getTime() - message.createdAt.getTime()
     );
-    const apiLatency = client.ws.ping;
 
     msg
       .edit({
-        content: `🏓  **|**  Pong! - Time: \`${botLatency}ms\``,
+        content: `🏓  **|**  Pong! - Time taken: \`${botLatency}ms\``,
       })
       .catch(() => {
         return;

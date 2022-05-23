@@ -51,7 +51,7 @@ export class ExtendedClient extends Client {
     );
     slashCmdsFiles.forEach(async (filePath) => {
       const slashCommand: SlashCommandType = await this.importFile(filePath);
-      if (!slashCommand.name) return;
+      if (!slashCommand?.name) return;
       // console.log(slashCommand);
       this.slashCmds.set(slashCommand.name, slashCommand);
       slashCommands.push(slashCommand);
@@ -78,7 +78,7 @@ export class ExtendedClient extends Client {
     );
     prefixCmdsFiles.forEach(async (filePath) => {
       const prefixCommand: CommandType = await this.importFile(filePath);
-      if (!prefixCommand.name) return;
+      if (!prefixCommand?.name) return;
       // console.log(prefixCommand);
       this.commands.set(prefixCommand.name, prefixCommand);
       prefixCmds.push(prefixCommand);
