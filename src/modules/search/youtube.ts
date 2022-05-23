@@ -11,7 +11,7 @@ export default new Command({
 
   run: async ({ client, message, args }) => {
     try {
-      const prefix = process.env.globalPrefix;
+      const prefix = process.env.PREFIX;
 
       const syntaxError = {
         title: "Syntax Error",

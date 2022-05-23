@@ -35,7 +35,7 @@ export default new Command({
         (a, b) => a + b.memberCount,
         0
       );
-      const owner = client.users.cache.get(process.env.ownerId);
+      const owner = client.users.cache.get(process.env.OWNER);
 
       if (!owner)
         return message.reply({

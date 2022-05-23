@@ -4,7 +4,7 @@ import { GuildChannelResolvable, Permissions } from "discord.js";
 
 export default new Event("messageCreate", async (message) => {
   if (message.author.bot || !message.guild) return;
-  const prefix = process.env.globalPrefix;
+  const prefix = process.env.PREFIX;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
   const [cmd, ...args] = message.content.slice(prefix.length).trim().split(" ");
 

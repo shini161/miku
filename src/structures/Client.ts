@@ -27,7 +27,7 @@ export class ExtendedClient extends Client {
 
   start() {
     this.registerModules();
-    this.login(process.env.botToken);
+    this.login(process.env.TOKEN);
   }
   async importFile(filePath: string) {
     return (await import(filePath))?.default;
@@ -60,7 +60,7 @@ export class ExtendedClient extends Client {
     this.on("ready", () => {
       this.registerCommands({
         commands: slashCommands,
-        guildId: process.env.guildId,
+        guildId: process.env.GUILD,
       });
     });
 
