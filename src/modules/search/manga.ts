@@ -4,21 +4,22 @@ import { get } from "request-promise-native";
 import { ColorResolvable } from "discord.js";
 
 export default new Command({
-  name: "anime",
-  aliases: ["search-anime"],
-  usages: "$PREFIX$anime <search>",
+  name: "manga",
+  aliases: ["search-manga"],
+  usages: "$PREFIX$manga <search>",
   required: true,
 
   run: async ({ client, message, args }) => {
     try {
       const prefix = process.env.globalPrefix;
       const color = Colors.celestialBlue;
+
       const syntaxError = {
         title: "Syntax Error",
         fields: [
           {
             name: "Usages:",
-            value: `${prefix}anime <search>`,
+            value: `${prefix}manga <search>`,
           },
         ],
         color: Colors.syntaxError as ColorResolvable,
@@ -32,7 +33,7 @@ export default new Command({
         });
 
       const option = {
-        url: `https://kitsu.io/api/edge/anime?filter[text]-${query}`,
+        url: `https://kitsu.io/api/edge/manga?filter[text]-${query}`,
         method: "GET",
         headers: {
           "Content-type": "application/vnd.api+json",
@@ -46,77 +47,78 @@ export default new Command({
           content: "No results were found!",
         });
       });
+
       if (!res)
         return message.reply({
           content: "No results were found!",
         });
 
-      const anime = res?.data[0];
+      const manga = res.data[0];
       const embed = {
-        title: `${anime.attributes.titles.en_jp}`,
-        url: `${anime.links.self}`,
+        title: `${manga.attributes.titles.en_jp}`,
+        url: `${manga.links.self}`,
         thumbnail: {
-          url: anime.attributes.posterImage.original,
+          url: manga.attributes.posterImage.original,
         },
-        description: anime.attributes.synopsis,
+        description: manga.attributes.synopsis,
         fields: [
           {
             name: "⏳ Status",
-            value: anime.attributes.status,
+            value: manga.attributes.status,
             inline: true,
           },
           {
             name: "🗂 Type",
-            value: anime.attributes.showType,
+            value: manga.type,
             inline: true,
           },
           {
             name: "🗓️ Aired",
             value:
-              anime.attributes.startDate && anime.attributes.endDate
-                ? anime.attributes.startDate == anime.attributes.endDate
-                  ? `**${anime.attributes.startDate}**`
+              manga.attributes.startDate && manga.attributes.endDate
+                ? manga.attributes.startDate == manga.attributes.endDate
+                  ? `**${manga.attributes.startDate}**`
                   : `From **${
-                      anime.attributes.startDate
-                        ? anime.attributes.startDate
+                      manga.attributes.startDate
+                        ? manga.attributes.startDate
                         : "N/A"
                     }** to **${
-                      anime.attributes.endDate
-                        ? anime.attributes.endDate
+                      manga.attributes.endDate
+                        ? manga.attributes.endDate
                         : "N/A"
                     }**`
                 : `From **${
-                    anime.attributes.startDate
-                      ? anime.attributes.startDate
+                    manga.attributes.startDate
+                      ? manga.attributes.startDate
                       : "N/A"
                   }** to **${
-                    anime.attributes.endDate ? anime.attributes.endDate : "N/A"
+                    manga.attributes.endDate ? manga.attributes.endDate : "N/A"
                   }**`,
             inline: false,
           },
           {
-            name: "💽 Total Episodes",
+            name: "📰 Chapters",
             value: `${
-              anime.attributes.episodeCount
-                ? anime.attributes.episodeCount
+              manga.attributes.chapterCount
+                ? manga.attributes.chapterCount
                 : "N/A"
             }`,
             inline: true,
           },
           {
-            name: "⏱ Duration",
+            name: "📚 Volumes",
             value: `${
-              anime.attributes.episodeLength
-                ? anime.attributes.episodeLength
+              manga.attributes.volumeCount
+                ? manga.attributes.volumeCount
                 : "N/A"
-            } Min`,
+            }`,
             inline: true,
           },
           {
             name: "⭐ Average Rating",
             value: `${
-              anime.attributes.averageRating
-                ? anime.attributes.averageRating
+              manga.attributes.averageRating
+                ? manga.attributes.averageRating
                 : "N/A"
             }`,
             inline: true,
@@ -124,8 +126,8 @@ export default new Command({
           {
             name: "🏆 Rank",
             value: `${
-              anime.attributes.ratingRank
-                ? "**TOP " + anime.attributes.ratingRank + "**"
+              manga.attributes.ratingRank
+                ? "**TOP " + manga.attributes.ratingRank + "**"
                 : "N/A"
             }`,
             inline: true,
