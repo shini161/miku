@@ -5,8 +5,21 @@ export default new Command({
   required: true,
 
   run: async ({ client, message, args }) => {
-    message.reply({
-      content: "pong!",
+    let msg = await message.reply({
+      content: "🏓  **|**  Pong!",
     });
+
+    const botLatency = Math.floor(
+      msg.createdAt.getTime() - message.createdAt.getTime()
+    );
+    const apiLatency = client.ws.ping;
+
+    msg
+      .edit({
+        content: `🏓  **|**  Pong! - Time: \`${botLatency}ms\``,
+      })
+      .catch(() => {
+        return;
+      });
   },
 });
