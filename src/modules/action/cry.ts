@@ -18,17 +18,17 @@ export default new Command({
     switch (target?.id) {
       case undefined:
         text = [`${message.author.username} is crying!`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username} is crying!`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is crying because of ${target.user.username}!`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

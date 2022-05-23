@@ -21,17 +21,17 @@ export default new Command({
           `${message.author.username} wants to bite something.`,
           `${message.author.username} needs to bite something.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username}, don't bite yourself!`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is biting ${target.user.username}.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

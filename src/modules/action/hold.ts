@@ -17,20 +17,20 @@ export default new Command({
 
     switch (target?.id) {
       case undefined:
-        return message.reply({
+        message.reply({
           content: "Please mention a user!",
         });
         break;
       case message.author.id:
         text = [`${message.author.username}, you can't hold you own hand...`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is holding ${target.user.username}'s hands.`,
           `${message.author.username} holds ${target.user.username}'s hands.'`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

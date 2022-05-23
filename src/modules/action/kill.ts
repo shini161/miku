@@ -17,20 +17,20 @@ export default new Command({
 
     switch (target?.id) {
       case undefined:
-        return message.reply({
+        message.reply({
           content: "Please mention a user!",
         });
         break;
       case message.author.id:
         text = [`${message.author.username}, don't kill yourself!`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} killed ${target.user.username}!`,
           `${message.author.username} is killing ${target.user.username}!`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

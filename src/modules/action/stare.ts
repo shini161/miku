@@ -21,21 +21,21 @@ export default new Command({
           `${message.author.username} stares..`,
           `${message.author.username} is staring at something`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [
           `${message.author.username} stares..`,
           `${message.author.username} is staring at something`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} stares at ${target.user.username}.`,
           `${message.author.username} is staring at ${target.user.username}.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

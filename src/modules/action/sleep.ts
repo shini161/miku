@@ -18,18 +18,18 @@ export default new Command({
     switch (target?.id) {
       case undefined:
         text = [`${message.author.username} is sleeping.`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username} is sleeping.`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} wants to sleep with ${target.user.username}!`,
           `${message.author.username} is sleeping with ${target.user.username}!`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

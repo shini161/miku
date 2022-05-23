@@ -21,20 +21,20 @@ export default new Command({
           `${message.author.username} smiles.`,
           `${message.author.username} is smiling.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [
           `${message.author.username} smiles.`,
           `${message.author.username} is smiling.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} smiles at ${target.user.username}.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

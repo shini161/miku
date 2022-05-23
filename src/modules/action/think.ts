@@ -21,21 +21,21 @@ export default new Command({
           `${message.author.username} is thinking at something.`,
           `${message.author.username} thinks..`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [
           `${message.author.username} is thinking at something.`,
           `${message.author.username} thinks..`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is thinking at ${target.user.username}.`,
           `${message.author.username} thinks at ${target.user.username}.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

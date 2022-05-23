@@ -21,21 +21,21 @@ export default new Command({
           `${message.author.username} needs a kiss!`,
           `${message.author.username} wants to be kissed by someone.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username}, how can you kiss yourself?`];
         images = [
           "https://media1.tenor.com/images/72bfd912fa78d4ea2337c8b62ab3e899/tenor.gif",
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} kissed ${target.user.username}!`,
           `${message.author.username} is kissing ${target.user.username}!`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

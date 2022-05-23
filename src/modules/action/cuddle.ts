@@ -21,15 +21,15 @@ export default new Command({
           `${message.author.username} needs to be cuddled!`,
           `${message.author.username} wants to be cuddled!`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username}, that's sad...`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [`${message.author.username} cuddles ${target.user.username}!`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

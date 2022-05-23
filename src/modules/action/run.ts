@@ -21,20 +21,20 @@ export default new Command({
           `${message.author.username} is running.`,
           `${message.author.username} is running away from something.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [
           `${message.author.username} is running.`,
           `${message.author.username} is running away from something.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is running away from ${target.user.username}.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

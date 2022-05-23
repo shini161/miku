@@ -18,18 +18,18 @@ export default new Command({
     switch (target?.id) {
       case undefined:
         text = [`${message.author.username} wants to tickle someone.`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username}, you can't tickle yourself!`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is tickling ${target.user.username}.`,
           `${message.author.username} tickles ${target.user.username}.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

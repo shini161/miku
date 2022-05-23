@@ -21,19 +21,19 @@ export default new Command({
           `${message.author.username} wants to nom something.`,
           `${message.author.username} needs to nom something.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [
           `${message.author.username} is nomming on ${target.user.username}`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is facepalming at ${target.user.username}.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {

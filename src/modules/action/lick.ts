@@ -18,21 +18,21 @@ export default new Command({
     switch (target?.id) {
       case undefined:
         text = [`${message.author.username} is licking things...`];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username}, are you a cat?`];
         images = [
           "https://media1.tenor.com/images/2834a92a3631f54354c49ec0bf7b7c1d/tenor.gif",
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is licking ${target.user.username}.`,
           `${message.author.username} licks ${target.user.username}.`,
         ];
-        return sendEmbed(text, images);
+        sendEmbed(text, images);
     }
 
     function sendEmbed(text: string[], images: string[]) {
