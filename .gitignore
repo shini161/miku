@@ -3,7 +3,6 @@ node_modules/
 scripts/
 .idea/
 package-lock.json
-environment.d.ts
 .env
 Procfile
 
