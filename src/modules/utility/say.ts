@@ -1,9 +1,5 @@
 import { Command } from "../../structures/Command";
-import {
-  ColorResolvable,
-  GuildChannelResolvable,
-  Permissions,
-} from "discord.js";
+import { GuildChannelResolvable, Permissions } from "discord.js";
 import Colors from "../../assets/colors.json";
 
 export default new Command({

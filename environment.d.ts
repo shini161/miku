@@ -4,8 +4,13 @@ declare global {
       TOKEN: string;
       GUILD: string;
       PREFIX: string;
-      DBPASS: string;
       OWNER: string;
+      DBHOST: string;
+      DBUSER: string;
+      DBPORT: number;
+      DBPASS: string;
+      DBNAME: string;
+      DBTIMEOUT: number;
       ENVIRONMENT: "dev" | "prod" | "debug";
     }
   }

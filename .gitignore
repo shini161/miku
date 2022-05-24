@@ -8,3 +8,4 @@ Procfile
 
 # commands on dev
 src/slashCmds/action/
+src/modules/utility/test.ts

@@ -10,6 +10,7 @@ import { SlashCommandType } from "../typings/SlashCmds";
 import { CommandType } from "../typings/Command";
 import { Event } from "./Event";
 import { RegisterCommandsOptions } from "../typings/client";
+import { psql } from "../structures/Database";
 
 const globPromise = promisify(glob);
 
@@ -26,11 +27,16 @@ export class ExtendedClient extends Client {
   }
 
   start() {
+    this.connectDatabase();
     this.registerModules();
     this.login(process.env.TOKEN);
   }
   async importFile(filePath: string) {
     return (await import(filePath))?.default;
+  }
+
+  async connectDatabase() {
+    psql.connect();
   }
 
   async registerCommands({ commands, guildId }: RegisterCommandsOptions) {

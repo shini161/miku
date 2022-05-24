@@ -21,6 +21,7 @@
     "fs": "^0.0.1-security",
     "glob": "^7.2.0",
     "luxon": "^2.4.0",
+    "pg": "^8.7.3",
     "request-promise-native": "^1.0.9",
     "yt-search": "^2.10.3"
   },
@@ -28,6 +29,7 @@
     "@types/glob": "^7.2.0",
     "@types/luxon": "^2.3.2",
     "@types/node": "^16.11.35",
+    "@types/pg": "^8.6.5",
     "@types/request-promise-native": "^1.0.18",
     "ts-node": "^10.4.0",
     "ts-node-dev": "^1.1.8",
