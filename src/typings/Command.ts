@@ -1,4 +1,9 @@
-import { ApplicationCommand, GuildMember, Message } from "discord.js";
+import {
+  ApplicationCommand,
+  GuildMember,
+  Message,
+  MessageManager,
+} from "discord.js";
 import { ExtendedClient } from "../structures/Client";
 
 export interface ExtendedCommand extends ApplicationCommand {
