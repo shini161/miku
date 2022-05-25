@@ -8,6 +8,7 @@ Procfile
 
 # commands on dev
 src/slashCmds/action/
+src/modules/utility/test.ts
 plans.txt
 src/logging/
 src/modules/giveaway/
