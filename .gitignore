@@ -9,3 +9,16 @@ Procfile
 # commands on dev
 src/slashCmds/action/
 plans.txt
+src/logging/
+src/modules/giveaway/
+src/modules/music/
+src/modules/setup
+src/modules/moderation/kick.ts
+src/modules/moderation/slowmode.ts
+src/modules/moderation/softban.ts
+src/modules/moderation/tempban.ts
+src/modules/moderation/unban.ts
+src/modules/moderation/unmute.ts
+src/modules/moderation/unmute.ts
+src/modules/moderation/timeout.ts
+src/modules/moderation/untimeout.ts
