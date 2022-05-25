@@ -27,8 +27,8 @@ export class ExtendedClient extends Client {
   }
 
   start() {
-    this.connectDatabase();
     this.registerModules();
+    this.connectDatabase();
     this.login(process.env.TOKEN);
   }
   async importFile(filePath: string) {
@@ -36,7 +36,21 @@ export class ExtendedClient extends Client {
   }
 
   async connectDatabase() {
-    psql.connect();
+    psql
+      .connect()
+      .then(() => {
+        console.log("I connected to the Database! [PostgreSQL]");
+      })
+      .catch((err) => {
+        console.log("I couldn't connect to the Database! [PostgreSQL]");
+        console.log(err.stack);
+        return;
+      });
+    psql.on("error", (err) => {
+      console.log("I disconnected from the Database! [PostgreSQL]");
+      console.log(err.stack);
+      return;
+    });
   }
 
   async registerCommands({ commands, guildId }: RegisterCommandsOptions) {
