@@ -10,7 +10,7 @@ import { SlashCommandType } from "../typings/SlashCmds";
 import { CommandType } from "../typings/Command";
 import { Event } from "./Event";
 import { RegisterCommandsOptions } from "../typings/client";
-import { psql } from "../structures/Database";
+import { psql } from "./Database";
 
 const globPromise = promisify(glob);
 
