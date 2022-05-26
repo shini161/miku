@@ -10,11 +10,12 @@ export default new Command({
   name: "purge",
   aliases: ["clear"],
   usages: "$PREFIX$purge <amount>",
+  channel_type: "GUILD_ONLY",
   required: true,
 
   run: async ({ client, message, args }) => {
+    if (message.channel.type === "DM") return;
     try {
-      if (message.channel.type == "DM") return;
       const prefix = process.env.PREFIX;
 
       const syntaxError = {

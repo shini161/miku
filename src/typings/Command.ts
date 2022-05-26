@@ -1,9 +1,4 @@
-import {
-  ApplicationCommand,
-  GuildMember,
-  Message,
-  MessageManager,
-} from "discord.js";
+import { ApplicationCommand, GuildMember, Message } from "discord.js";
 import { ExtendedClient } from "../structures/Client";
 
 export interface ExtendedCommand extends ApplicationCommand {
@@ -22,6 +17,8 @@ export type CommandType = {
   name: string;
   usages?: string;
   aliases?: string[];
+  cooldown?: number;
+  channel_type?: "GUILD_ONLY" | "DM_ONLY" | "ALL";
   required?: boolean;
   run: RunFunction;
 };
