@@ -15,7 +15,7 @@ export default new Command({
 
     msg
       .edit({
-        content: `🏓  **|**  Pong! - Time taken: \`${botLatency}ms\``,
+        content: `🏓  **|**  Pong! - Time taken: **${botLatency}ms**`,
       })
       .catch(() => {
         return;

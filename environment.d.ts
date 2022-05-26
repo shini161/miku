@@ -12,6 +12,8 @@ declare global {
       DBNAME: string;
       DBTIMEOUT: number;
       ENVIRONMENT: "dev" | "prod" | "debug";
+      GuildAddWebhookID: string;
+      GuildAddWebhookToken: string;
     }
   }
 }
