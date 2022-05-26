@@ -7,6 +7,7 @@ const name = "cry"; // command name
 export default new Command({
   name,
   usages: `%PREFIX%${name} [@user]`,
+  channel_type: "GUILD_ONLY",
   required: true,
 
   run: async ({ client, message, args }) => {
