@@ -14,7 +14,6 @@ src/logging/
 src/modules/giveaway/
 src/modules/music/
 src/modules/setup
-src/modules/moderation/kick.ts
 src/modules/moderation/slowmode.ts
 src/modules/moderation/softban.ts
 src/modules/moderation/tempban.ts
