@@ -3,7 +3,7 @@ import { client } from "..";
 import { GuildChannelResolvable, Permissions } from "discord.js";
 
 export default new Event("messageCreate", async (message) => {
-  if (message.author.bot || !message.guild) return;
+  if (message.author.bot) return;
   const prefix = process.env.PREFIX;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
   const [cmd, ...args] = message.content.slice(prefix.length).trim().split(" ");
@@ -12,16 +12,34 @@ export default new Event("messageCreate", async (message) => {
     client.commands.get(cmd.toLowerCase()) ||
     client.commands.find((c) => c.aliases?.includes(cmd.toLowerCase()));
   if (!command) return;
-  if (command.required) {
-    if (
-      message.guild.me
-        .permissionsIn(message.channel as GuildChannelResolvable)
-        .has(Permissions.FLAGS.SEND_MESSAGES) ||
-      message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
-    ) {
+  switch (command.channel_type) {
+    case "DM_ONLY":
+      if (message.channel.type !== "DM") return;
       await command.run({ client, message, args });
+      break;
+    case "GUILD_ONLY":
+      if (message.channel.type === "DM")
+        return message.reply({
+          content: "You can't run this command here!",
+        });
+      checkRequired();
+      break;
+    default:
+      if (message.channel.type === "DM")
+        return await command.run({ client, message, args });
+      checkRequired();
+  }
+  async function checkRequired() {
+    if (command.required) {
+      if (
+        !message.guild.me
+          .permissionsIn(message.channel as GuildChannelResolvable)
+          .has(Permissions.FLAGS.SEND_MESSAGES) &&
+        !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
+      )
+        return;
+      return await command.run({ client, message, args });
     }
-  } else {
     try {
       await command.run({ client, message, args });
     } catch (err) {
