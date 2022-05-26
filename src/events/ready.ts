@@ -9,7 +9,7 @@ export default new Event("ready", () => {
     activities: [
       {
         name: "/help",
-        type: "STREAMING",
+        type: "PLAYING",
         url: "https://www.twitch.tv/.",
       },
     ],
