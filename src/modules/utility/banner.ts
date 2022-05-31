@@ -69,7 +69,7 @@ export default new Command({
               embeds: [embed],
             });
           })
-          .catch((err) => {
+          .catch(() => {
             return message.reply({
               content: "I couldn't find that user!",
             });
