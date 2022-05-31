@@ -1,6 +1,7 @@
 import { Command } from "../../structures/Command";
 import { ColorResolvable } from "discord.js";
 import Colors from "../../assets/colors.json";
+import config from "../../assets/config.json";
 
 export default new Command({
   name: "coinflip",
@@ -10,7 +11,7 @@ export default new Command({
 
   run: async ({ client, message, args }) => {
     try {
-      const prefix = process.env.PREFIX;
+      const prefix = config.prefix;
 
       const syntaxError = {
         title: "Syntax Error",

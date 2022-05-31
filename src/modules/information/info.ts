@@ -10,6 +10,7 @@ import Emojis from "../../assets/emojis.json";
 import glob from "glob";
 import { promisify } from "util";
 import Colors from "../../assets/colors.json";
+import config from "../../assets/config.json";
 import { version } from ".././../../package.json";
 
 const globPromise = promisify(glob);
@@ -35,7 +36,7 @@ export default new Command({
         (a, b) => a + b.memberCount,
         0
       );
-      const owner = client.users.cache.get(process.env.OWNER);
+      const owner = client.users.cache.get(config.ownerId);
 
       if (!owner)
         return message.reply({

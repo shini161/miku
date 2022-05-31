@@ -1,6 +1,7 @@
 import { Command } from "../../structures/Command";
 import { ColorResolvable, Permissions } from "discord.js";
 import Colors from "../../assets/colors.json";
+import config from "../../assets/config.json";
 
 export default new Command({
   name: "ban",
@@ -11,7 +12,7 @@ export default new Command({
     try {
       const color: string = Colors.celestialBlue;
       let reason = args.slice(1).join(" ") || "No reason given";
-      const prefix = process.env.PREFIX;
+      const prefix = config.prefix;
       let userID = args[0];
 
       const syntaxError = {

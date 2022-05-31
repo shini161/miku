@@ -1,5 +1,6 @@
 import { Command } from "../../structures/Command";
 import Colors from "../../assets/colors.json";
+import config from "../../assets/config.json";
 import { get } from "request-promise-native";
 import { ColorResolvable } from "discord.js";
 
@@ -11,7 +12,7 @@ export default new Command({
 
   run: async ({ client, message, args }) => {
     try {
-      const prefix = process.env.PREFIX;
+      const prefix = config.prefix;
       const color = Colors.celestialBlue;
       const syntaxError = {
         title: "Syntax Error",

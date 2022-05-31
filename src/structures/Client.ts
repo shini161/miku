@@ -10,6 +10,7 @@ import { SlashCommandType } from "../typings/SlashCmds";
 import { CommandType } from "../typings/Command";
 import { Event } from "./Event";
 import { RegisterCommandsOptions } from "../typings/client";
+import config from "../assets/config.json";
 import { psql } from "./Database";
 
 const globPromise = promisify(glob);
@@ -80,7 +81,7 @@ export class ExtendedClient extends Client {
     this.on("ready", () => {
       this.registerCommands({
         commands: slashCommands,
-        guildId: process.env.GUILD,
+        guildId: config.guildId,
       });
     });
 

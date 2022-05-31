@@ -2,17 +2,21 @@ import { Command } from "../../structures/Command";
 import { ColorResolvable } from "discord.js";
 import { get } from "request-promise-native";
 import Colors from "../../assets/colors.json";
+import config from "../../assets/config.json";
 
 export default new Command({
   name: "random",
   aliases: ["rand"],
   usages:
-    "$PREFIX$random <type>\n\n**Types**:\n- waifu/wa/w => Sends a random waifu image. \nneko/ne => Sends a random neko image.\nnumber/num/n => Sends a random number.",
+    "$PREFIX$random <type>\n\n" +
+    "**Types**:\n- waifu/wa/w => Sends a random waifu image.\n" +
+    "neko/ne => Sends a random neko image.\n" +
+    "number/num/n => Sends a random number.",
   required: true,
 
   run: async ({ client, message, args }) => {
     try {
-      const prefix = process.env.PREFIX;
+      const prefix = config.prefix;
       const color = Colors.celestialBlue;
       const query = args[0]?.toLowerCase();
 

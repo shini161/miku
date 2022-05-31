@@ -7,6 +7,7 @@ import {
 } from "discord.js";
 import { psql } from "../structures/Database";
 import Colors from "../assets/colors.json";
+import config from "../assets/config.json";
 import { client } from "..";
 import { addGuild } from "../Utilities/addGuild";
 
@@ -14,7 +15,7 @@ export default new Event("guildCreate", async (guild) => {
   try {
     let messageChannel: TextChannel;
     const color = Colors.celestialBlue;
-    const prefix = process.env.PREFIX;
+    const prefix = config.prefix;
     const serverCount = client.guilds.cache.size;
     const totalMemberCount = client.guilds.cache.reduce(
       (a, b) => a + b.memberCount,

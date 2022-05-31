@@ -1,10 +1,11 @@
 import { Event } from "../structures/Event";
 import { client } from "..";
 import { GuildChannelResolvable, Permissions } from "discord.js";
+import config from "../assets/config.json";
 
 export default new Event("messageCreate", async (message) => {
   if (message.author.bot) return;
-  const prefix = process.env.PREFIX;
+  const prefix = config.prefix;
   if (!message.content.toLowerCase().startsWith(prefix)) return;
   const [cmd, ...args] = message.content.slice(prefix.length).trim().split(" ");
 
