@@ -1,17 +1,18 @@
 import { Event } from "../structures/Event";
 import {
   ColorResolvable,
-  GuildTextBasedChannel,
   Permissions,
+  TextChannel,
   WebhookClient,
 } from "discord.js";
 import { psql } from "../structures/Database";
 import Colors from "../assets/colors.json";
 import { client } from "..";
+import { addGuild } from "../Utilities/addGuild";
 
 export default new Event("guildCreate", async (guild) => {
   try {
-    let messageChannel: GuildTextBasedChannel;
+    let messageChannel: TextChannel;
     const color = Colors.celestialBlue;
     const prefix = process.env.PREFIX;
     const serverCount = client.guilds.cache.size;
@@ -87,18 +88,12 @@ export default new Event("guildCreate", async (guild) => {
     });
 
     // register guild to database
-    await psql.query(
+    psql.query(
       `SELECT * FROM guilds WHERE id = '${guild.id}';`,
       async (err, res) => {
         if (err) throw err;
         if (!res.rowCount) {
-          await psql.query(
-            `INSERT INTO guilds (id) ` + `VALUES ('${guild.id}')`,
-            async (err, res) => {
-              if (err) throw err;
-              console.log(res);
-            }
-          );
+          await addGuild(guild.id);
         }
       }
     );
