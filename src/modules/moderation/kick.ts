@@ -51,14 +51,14 @@ export default new Command({
       !isNaN(+args[0].slice(2, 20))
     )
       userID = args[0].slice(2, 20);
-    if (
+    else if (
       args[0].startsWith("<@!") &&
       args[0].endsWith(">") &&
       args[0].length === 22 &&
       !isNaN(+args[0].slice(3, 21))
     )
       userID = args[0].slice(3, 21);
-    if (isNaN(+args[0]) || args[0].length !== 18)
+    else if (isNaN(+args[0]) || args[0].length !== 18)
       return message.reply({
         embeds: [syntaxError],
       });
