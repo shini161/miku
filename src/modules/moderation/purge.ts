@@ -1,9 +1,5 @@
 import { Command } from "../../structures/Command";
-import {
-  Permissions,
-  ColorResolvable,
-  GuildChannelResolvable,
-} from "discord.js";
+import { Permissions, ColorResolvable } from "discord.js";
 import Colors from "../../assets/colors.json";
 
 export default new Command({
@@ -31,7 +27,7 @@ export default new Command({
 
       if (
         !message.member
-          .permissionsIn(message.channel as GuildChannelResolvable)
+          .permissionsIn(message.channel)
           .has(Permissions.FLAGS.MANAGE_MESSAGES) &&
         !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
       )
@@ -41,7 +37,7 @@ export default new Command({
 
       if (
         !message.guild.me
-          .permissionsIn(message.channel as GuildChannelResolvable)
+          .permissionsIn(message.channel)
           .has(Permissions.FLAGS.MANAGE_MESSAGES) &&
         !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
       )
@@ -56,23 +52,24 @@ export default new Command({
 
       if (isNaN(+args[0]))
         return message.reply({
-          content: "`<amount>` must be a number!",
+          content: "Please enter a valid argument!",
         });
 
       if (+args[0] <= 0 || +args[0] > 99)
         return message.reply({
-          content: "`<amount>` must be a number between 1 and 99!",
+          content: "`I can't purge less than ",
         });
 
-      await message.channel.bulkDelete(+args[0] + 1).catch((err) => {
+      await message.channel.bulkDelete(+args[0] + 1).catch(() => {
         return message.channel.send({
-          content: `I was unable to delete the specified amount of messages\n${err}`,
+          content: `I was unable to delete the specified amount of messages!`,
         });
       });
-      let content = `I have deleted ${args[0]} messages!`;
+      let content: string = `I have deleted ${args[0]} messages!`;
       if (+args[0] === 1) {
         content = `I have deleted ${args[0]} message!`;
       }
+
       message.channel
         .send({
           content: content,
@@ -80,8 +77,8 @@ export default new Command({
         .then((msg) => {
           setTimeout(() => msg.delete(), 2000);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          return;
         });
     } catch (err) {
       console.log(err);
