@@ -17,11 +17,11 @@ const globPromise = promisify(glob);
 
 export default new Command({
   name: "info",
-  aliases: ["info-bot", "infobot", "bot-info", "botinfo"],
+  aliases: ["info-bot", "infobot"],
   usages: "$PREFIX$info",
   required: true,
 
-  run: async ({ client, message, args }) => {
+  run: async ({ client, message }) => {
     try {
       const color = Colors.celestialBlue;
       const { greenTick, redTick, greenTickCustom, redTickCustom } = Emojis;
@@ -40,17 +40,17 @@ export default new Command({
 
       if (!owner)
         return message.reply({
-          content: "Sorry, an error has occured!",
+          content: "Sorry, an error has occurred!",
         });
 
-      let namedCmds = 0;
-      let totalCmds = 0;
+      let namedCommands = 0;
+      let totalCommands = 0;
       const cmdFiles = await globPromise(`${__dirname}/../**/*{.ts,.js}`);
       await Promise.all(
         cmdFiles.map(async (filePath) => {
           const cmd: CommandType = await importFile(filePath);
-          if (cmd?.name) namedCmds++;
-          totalCmds++;
+          if (cmd?.name) namedCommands++;
+          totalCommands++;
         })
       );
 
@@ -87,7 +87,7 @@ export default new Command({
           },
           {
             name: "Commands",
-            value: `${namedCmds} of ${totalCmds}`,
+            value: `${namedCommands} of ${totalCommands}`,
             inline: true,
           },
           {
@@ -117,7 +117,7 @@ export default new Command({
           embeds: [embed],
         });
 
-      sendDM();
+      await sendDM();
 
       function sendDM() {
         let trigger = true;
