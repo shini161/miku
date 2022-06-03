@@ -3,6 +3,7 @@ import Colors from "../../assets/colors.json";
 import config from "../../assets/config.json";
 import ytsearch from "yt-search";
 import { ColorResolvable } from "discord.js";
+import getPrefix from "../../utils/getPrefix";
 
 export default new Command({
   name: "youtube",
@@ -12,7 +13,7 @@ export default new Command({
 
   run: async ({ client, message, args }) => {
     try {
-      const prefix = config.prefix;
+      const prefix = await getPrefix(message.guild.id);
 
       const syntaxError = {
         title: "Syntax Error",
@@ -33,9 +34,10 @@ export default new Command({
         });
 
       const res = await ytsearch(query).catch(() => {
-        return message.reply({
+        message.reply({
           content: "No results were found!",
         });
+        return;
       });
 
       if (!res)
