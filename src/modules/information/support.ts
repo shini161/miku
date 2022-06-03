@@ -1,16 +1,14 @@
 import { Command } from "../../structures/Command";
 import { Permissions, GuildChannelResolvable } from "discord.js";
 import Emojis from "../../assets/emojis.json";
-import Colors from "../../assets/colors.json";
 
 export default new Command({
   name: "support",
   usages: "$PREFIX$support",
   required: false,
 
-  run: async ({ client, message, args }) => {
+  run: async ({message}) => {
     try {
-      const color = Colors.celestialBlue;
       const { greenTick, redTick, greenTickCustom, redTickCustom } = Emojis;
       const invite = "https://discord.gg/DdT3ncvcgh";
       const content = `Do you need help with the bot?\nJoin our support server: ${invite}`;
@@ -25,7 +23,7 @@ export default new Command({
           content,
         });
 
-      sendDM();
+      await sendDM();
       function sendDM() {
         let trigger = true;
         message.author
