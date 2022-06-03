@@ -2,6 +2,7 @@ import { Command } from "../../structures/Command";
 import { Permissions, ColorResolvable } from "discord.js";
 import Colors from "../../assets/colors.json";
 import config from "../../assets/config.json";
+import getPrefix from "../../utils/getPrefix";
 
 export default new Command({
   name: "purge",
@@ -13,7 +14,7 @@ export default new Command({
   run: async ({ client, message, args }) => {
     if (message.channel.type === "DM") return;
     try {
-      const prefix = config.prefix;
+      const prefix = await getPrefix(message.guild.id);
 
       const syntaxError = {
         title: "Syntax Error",
