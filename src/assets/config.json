@@ -1,5 +1,30 @@
 {
   "prefix": "m!",
   "guildId": "820936214449487912",
-  "ownerId": "703994517971533935"
+  "ownerId": "703994517971533935",
+  "default_lang": "en_US",
+
+  "modules": {
+    "action": {
+      "cooldown": 0
+    },
+    "information": {
+      "cooldown": 0
+    },
+    "moderation": {
+      "cooldown": 0
+    },
+    "music": {
+      "cooldown": 0
+    },
+    "search": {
+      "cooldown": 0
+    },
+    "setup": {
+      "cooldown": 0
+    },
+    "utility": {
+      "cooldown": 0
+    }
+  }
 }
