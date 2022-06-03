@@ -6,13 +6,13 @@ import { ColorResolvable } from "discord.js";
 const name = "kiss"; // command name
 export default new Command({
   name,
-  usages: `%PREFIX%${name} [@user]`,
+  usages: `$PREFIX$${name} [@user]`,
   channel_type: "GUILD_ONLY",
   required: true,
 
-  run: async ({ client, message, args }) => {
+  run: async ({message}) => {
     let text: string[];
-    let images: string[] = ActionData[name].images;
+    let images = ActionData[name].images;
     const color = Colors.celestialBlue;
     const target = message.mentions.members.first();
 
