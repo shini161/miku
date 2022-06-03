@@ -33,7 +33,7 @@ export default new Command({
       }
       const USER = message.guild.members.cache.get(id);
       if (USER) return getInfo(USER);
-      getInfo(message.member);
+      await getInfo(message.member);
 
       async function getInfo(user: GuildMember) {
         try {
