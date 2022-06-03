@@ -1,8 +1,8 @@
 import { Command } from "../../structures/Command";
 import Colors from "../../assets/colors.json";
-import config from "../../assets/config.json";
 import { get } from "request-promise-native";
 import { ColorResolvable } from "discord.js";
+import getPrefix from "../../utils/getPrefix";
 
 export default new Command({
   name: "anime",
@@ -12,7 +12,7 @@ export default new Command({
 
   run: async ({ client, message, args }) => {
     try {
-      const prefix = config.prefix;
+      const prefix = await getPrefix(message.guild.id);
       const color = Colors.celestialBlue;
       const syntaxError = {
         title: "Syntax Error",
