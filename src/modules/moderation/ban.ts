@@ -1,7 +1,7 @@
 import { Command } from "../../structures/Command";
 import { ColorResolvable, Permissions } from "discord.js";
 import Colors from "../../assets/colors.json";
-import config from "../../assets/config.json";
+import getPrefix from "../../utils/getPrefix";
 
 export default new Command({
   name: "ban",
@@ -10,9 +10,9 @@ export default new Command({
 
   run: async ({ client, message, args }) => {
     try {
-      const color: string = Colors.celestialBlue;
+      const color = Colors.celestialBlue;
       let reason = args.slice(1).join(" ") || "No reason given";
-      const prefix = config.prefix;
+      const prefix = await getPrefix(message.guild.id);
       let userID = args[0];
 
       const syntaxError = {
@@ -150,14 +150,14 @@ export default new Command({
                   console.log(err);
                 });
             }
-            message.guild.members.ban(id, {
+            await message.guild.members.ban(id, {
               reason: reason,
             });
             message.channel.send({
               embeds: [channelEmbed],
             });
           })
-          .catch((err) => {
+          .catch(() => {
             return message.reply({
               content: "I couldn't find that user!",
             });
