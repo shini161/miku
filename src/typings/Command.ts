@@ -17,7 +17,7 @@ export type CommandType = {
   name: string;
   usages?: string;
   aliases?: string[];
-  cooldown?: number;
+  cooldown?: number | "Module";
   channel_type?: "GUILD_ONLY" | "DM_ONLY" | "ALL";
   required?: boolean;
   run: RunFunction;
