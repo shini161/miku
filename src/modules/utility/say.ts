@@ -2,6 +2,7 @@ import { Command } from "../../structures/Command";
 import { GuildChannelResolvable, Permissions } from "discord.js";
 import Colors from "../../assets/colors.json";
 import config from "../../assets/config.json";
+import getPrefix from "../../utils/getPrefix";
 
 export default new Command({
   name: "say",
@@ -10,7 +11,7 @@ export default new Command({
 
   run: async ({ client, message, args }) => {
     try {
-      const prefix = config.prefix;
+      const prefix = await getPrefix(message.guild.id);
 
       const authorButton = {
         type: 1,
