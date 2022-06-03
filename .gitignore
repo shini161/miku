@@ -12,8 +12,6 @@ plans.txt
 src/modules/giveaway/
 src/modules/music/
 src/modules/moderation/slowmode.ts
-src/modules/moderation/softban.ts
-src/modules/moderation/unban.ts
 src/modules/moderation/unmute.ts
 src/modules/moderation/timeout.ts
 src/modules/moderation/untimeout.ts
