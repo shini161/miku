@@ -5,17 +5,18 @@ import {
   TextChannel,
   WebhookClient,
 } from "discord.js";
-import { psql } from "../structures/Database";
 import Colors from "../assets/colors.json";
 import config from "../assets/config.json";
 import { client } from "..";
-import { addGuild } from "../Utilities/addGuild";
+import addGuild from "../utils/addGuild";
+import sql from "../structures/Database";
+import getPrefix from "../utils/getPrefix";
 
 export default new Event("guildCreate", async (guild) => {
   try {
     let messageChannel: TextChannel;
     const color = Colors.celestialBlue;
-    const prefix = config.prefix;
+    const prefix = await getPrefix(guild.id);
     const serverCount = client.guilds.cache.size;
     const totalMemberCount = client.guilds.cache.reduce(
       (a, b) => a + b.memberCount,
@@ -84,20 +85,13 @@ export default new Event("guildCreate", async (guild) => {
       timestamp: new Date(),
       color: Colors.celestialBlue as ColorResolvable,
     };
-    messageChannel.send({
+    await messageChannel.send({
       embeds: [embed],
     });
 
     // register guild to database
-    psql.query(
-      `SELECT * FROM guilds WHERE id = '${guild.id}';`,
-      async (err, res) => {
-        if (err) throw err;
-        if (!res.rowCount) {
-          await addGuild(guild.id);
-        }
-      }
-    );
+    const res = await sql`SELECT * FROM guilds WHERE id = ${guild.id}`;
+    if (!res.length) await addGuild(guild.id);
 
     if (!webhookClient) return;
     await webhookClient.send({
