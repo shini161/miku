@@ -12,7 +12,7 @@ export default new Command({
   usages: "$PREFIX$invite",
   required: true,
 
-  run: async ({ client, message, args }) => {
+  run: async ({message}) => {
     try {
       const color = Colors.celestialBlue;
       const { greenTick, redTick, greenTickCustom, redTickCustom } = Emojis;
