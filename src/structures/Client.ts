@@ -11,7 +11,6 @@ import { CommandType } from "../typings/Command";
 import { Event } from "./Event";
 import { RegisterCommandsOptions } from "../typings/client";
 import config from "../assets/config.json";
-import { psql } from "./Database";
 
 const globPromise = promisify(glob);
 
@@ -29,37 +28,18 @@ export class ExtendedClient extends Client {
 
   start() {
     this.registerModules();
-    this.connectDatabase();
     this.login(process.env.TOKEN);
   }
   async importFile(filePath: string) {
     return (await import(filePath))?.default;
   }
 
-  async connectDatabase() {
-    psql
-      .connect()
-      .then(() => {
-        console.log("I connected to the Database! [PostgreSQL]");
-      })
-      .catch((err) => {
-        console.log("I couldn't connect to the Database! [PostgreSQL]");
-        console.log(err.stack);
-        return;
-      });
-    psql.on("error", (err) => {
-      console.log("I disconnected from the Database! [PostgreSQL]");
-      console.log(err.stack);
-      return;
-    });
-  }
-
   async registerCommands({ commands, guildId }: RegisterCommandsOptions) {
     if (guildId) {
-      this.guilds.cache.get(guildId)?.commands.set(commands);
+      await this.guilds.cache.get(guildId)?.commands.set(commands);
       console.log(`Registering SlashCommands to ${guildId}`);
     } else {
-      this.application?.commands.set(commands);
+      await this.application?.commands.set(commands);
       console.log("Registering global SlashCommands");
     }
   }
