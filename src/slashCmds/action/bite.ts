@@ -1,6 +1,6 @@
-import { SlashCommand } from "../../structures/SlashCmds";
-import ActionData from "../../assets/action-module.json";
-import Colors from "../../assets/colors.json";
+import { SlashCommand } from "../../structures/SlashCommand";
+import ActionData from "../../../assets/action-module.json";
+import Colors from "../../../assets/colors.json";
 import { ColorResolvable } from "discord.js";
 
 const name = "bite"; // command name
@@ -11,7 +11,7 @@ export default new SlashCommand({
     {
       name: "target",
       description: "to select the target",
-      type: 2,
+      type: "USER",
       required: false,
     },
   ],
@@ -53,7 +53,7 @@ export default new SlashCommand({
         color: color as ColorResolvable,
       };
 
-      interaction.channel.send({
+      interaction.followUp({
         embeds: [embed],
       });
     }
