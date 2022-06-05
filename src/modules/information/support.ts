@@ -1,6 +1,6 @@
 import { Command } from "../../structures/Command";
 import { Permissions, GuildChannelResolvable } from "discord.js";
-import Emojis from "../../assets/emojis.json";
+import Emojis from "../../../assets/emojis.json";
 
 export default new Command({
   name: "support",

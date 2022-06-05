@@ -6,11 +6,11 @@ import {
 } from "discord.js";
 import { CommandType } from "../../typings/Command";
 import { Duration } from "luxon";
-import Emojis from "../../assets/emojis.json";
+import Emojis from "../../../assets/emojis.json";
 import glob from "glob";
 import { promisify } from "util";
-import Colors from "../../assets/colors.json";
-import config from "../../assets/config.json";
+import Colors from "../../../assets/colors.json";
+import config from "../../config.json";
 import { version } from ".././../../package.json";
 
 const globPromise = promisify(glob);

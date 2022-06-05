@@ -4,8 +4,8 @@ import {
   ColorResolvable,
   GuildChannelResolvable,
 } from "discord.js";
-import Emojis from "../../assets/emojis.json";
-import Colors from "../../assets/colors.json";
+import Emojis from "../../../assets/emojis.json";
+import Colors from "../../../assets/colors.json";
 
 export default new Command({
   name: "invite",
