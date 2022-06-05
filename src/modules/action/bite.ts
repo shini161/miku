@@ -1,7 +1,7 @@
-import {Command} from "../../structures/Command";
+import { Command } from "../../structures/Command";
 import ActionData from "../../../assets/action-module.json";
 import Colors from "../../../assets/colors.json";
-import {ColorResolvable} from "discord.js";
+import { ColorResolvable } from "discord.js";
 
 const name = "bite"; // command name
 export default new Command({
@@ -10,7 +10,7 @@ export default new Command({
   channel_type: "GUILD_ONLY",
   required: true,
 
-  run: async ({message}) => {
+  run: async ({ message }) => {
     let text: string[];
     let images = ActionData[name].images;
     const color = Colors.celestialBlue;
@@ -39,7 +39,7 @@ export default new Command({
       const embed = {
         author: {
           name: text[Math.floor(Math.random() * text.length)],
-          icon_url: message.author.displayAvatarURL({dynamic: true}),
+          icon_url: message.author.displayAvatarURL({ dynamic: true }),
         },
         image: {
           url: images[Math.floor(Math.random() * images.length)],

@@ -7,7 +7,7 @@ export default new Command({
   usages: "$PREFIX$support",
   required: false,
 
-  run: async ({message}) => {
+  run: async ({ message }) => {
     try {
       const { greenTick, redTick, greenTickCustom, redTickCustom } = Emojis;
       const invite = "https://discord.gg/DdT3ncvcgh";

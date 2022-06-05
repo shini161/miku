@@ -33,20 +33,20 @@ export default new Command({
         });
 
       const res = await axios
-          .get(`https://kitsu.io/api/edge/anime?filter[text]-${query}`, {
-            method: "GET",
-            headers: {
-              "Content-type": "application/vnd.api+json",
-              Accept: "application/vnd.api+json",
-            },
-            responseType: "json",
-          })
-          .catch(() => {
-            message.reply({
-              content: "No results were found!",
-            });
-            return;
+        .get(`https://kitsu.io/api/edge/anime?filter[text]-${query}`, {
+          method: "GET",
+          headers: {
+            "Content-type": "application/vnd.api+json",
+            Accept: "application/vnd.api+json",
+          },
+          responseType: "json",
+        })
+        .catch(() => {
+          message.reply({
+            content: "No results were found!",
           });
+          return;
+        });
 
       if (!res)
         return message.reply({
@@ -75,60 +75,60 @@ export default new Command({
           {
             name: "🗓️ Aired",
             value:
-                anime.attributes.startDate && anime.attributes.endDate
-                    ? anime.attributes.startDate == anime.attributes.endDate
-                        ? `**${anime.attributes.startDate}**`
-                        : `From **${
-                            anime.attributes.startDate
-                                ? anime.attributes.startDate
-                                : "N/A"
-                        }** to **${
-                            anime.attributes.endDate
-                                ? anime.attributes.endDate
-                                : "N/A"
-                        }**`
-                    : `From **${
-                        anime.attributes.startDate
-                            ? anime.attributes.startDate
-                            : "N/A"
+              anime.attributes.startDate && anime.attributes.endDate
+                ? anime.attributes.startDate == anime.attributes.endDate
+                  ? `**${anime.attributes.startDate}**`
+                  : `From **${
+                      anime.attributes.startDate
+                        ? anime.attributes.startDate
+                        : "N/A"
                     }** to **${
-                        anime.attributes.endDate ? anime.attributes.endDate : "N/A"
-                    }**`,
+                      anime.attributes.endDate
+                        ? anime.attributes.endDate
+                        : "N/A"
+                    }**`
+                : `From **${
+                    anime.attributes.startDate
+                      ? anime.attributes.startDate
+                      : "N/A"
+                  }** to **${
+                    anime.attributes.endDate ? anime.attributes.endDate : "N/A"
+                  }**`,
             inline: false,
           },
           {
             name: "💽 Total Episodes",
             value: `${
-                anime.attributes.episodeCount
-                    ? anime.attributes.episodeCount
-                    : "N/A"
+              anime.attributes.episodeCount
+                ? anime.attributes.episodeCount
+                : "N/A"
             }`,
             inline: true,
           },
           {
             name: "⏱ Duration",
             value: `${
-                anime.attributes.episodeLength
-                    ? anime.attributes.episodeLength
-                    : "N/A"
+              anime.attributes.episodeLength
+                ? anime.attributes.episodeLength
+                : "N/A"
             } Min`,
             inline: true,
           },
           {
             name: "⭐ Average Rating",
             value: `${
-                anime.attributes.averageRating
-                    ? anime.attributes.averageRating
-                    : "N/A"
+              anime.attributes.averageRating
+                ? anime.attributes.averageRating
+                : "N/A"
             }`,
             inline: true,
           },
           {
             name: "🏆 Rank",
             value: `${
-                anime.attributes.ratingRank
-                    ? "**TOP " + anime.attributes.ratingRank + "**"
-                    : "N/A"
+              anime.attributes.ratingRank
+                ? "**TOP " + anime.attributes.ratingRank + "**"
+                : "N/A"
             }`,
             inline: true,
           },

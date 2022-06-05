@@ -6,7 +6,7 @@ export default new Command({
   channel_type: "ALL",
   required: true,
 
-  run: async ({ client, message}) => {
+  run: async ({ client, message }) => {
     let msg = await message.reply({
       content: "🏓  **|**  Pong!",
     });

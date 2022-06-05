@@ -28,20 +28,20 @@ export default new Command({
       };
 
       if (
-          !message.member
-              .permissionsIn(message.channel)
-              .has(Permissions.FLAGS.MANAGE_MESSAGES) &&
-          !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
+        !message.member
+          .permissionsIn(message.channel)
+          .has(Permissions.FLAGS.MANAGE_MESSAGES) &&
+        !message.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
       )
         return message.reply({
           content: "You don't have permission to run this command!",
         });
 
       if (
-          !message.guild.me
-              .permissionsIn(message.channel)
-              .has(Permissions.FLAGS.MANAGE_MESSAGES) &&
-          !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
+        !message.guild.me
+          .permissionsIn(message.channel)
+          .has(Permissions.FLAGS.MANAGE_MESSAGES) &&
+        !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
       )
         return message.reply({
           content: "I don't have permission to do that!",
@@ -73,15 +73,15 @@ export default new Command({
       }
 
       message.channel
-          .send({
-            content: content,
-          })
-          .then((msg) => {
-            setTimeout(() => msg.delete(), 2000);
-          })
-          .catch(() => {
-            return;
-          });
+        .send({
+          content: content,
+        })
+        .then((msg) => {
+          setTimeout(() => msg.delete(), 2000);
+        })
+        .catch(() => {
+          return;
+        });
     } catch (err) {
       console.log(err);
     }

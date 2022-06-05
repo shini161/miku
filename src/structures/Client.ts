@@ -61,7 +61,7 @@ export class ExtendedClient extends Client {
 
     // Slash Commands
     const slashCmdsFiles = await globPromise(
-        `${__dirname}/../slashCmds/**/*{.ts,.js}`
+      `${__dirname}/../slashCmds/**/*{.ts,.js}`
     );
     for (const filePath of slashCmdsFiles) {
       const command: SlashCommandType = await this.importFile(filePath);
@@ -73,7 +73,7 @@ export class ExtendedClient extends Client {
 
     // Developer Slash Commands
     const devSlashCmdsFiles = await globPromise(
-        `${__dirname}/../_dev/slashCmds/*{.ts,.js}`
+      `${__dirname}/../_dev/slashCmds/*{.ts,.js}`
     );
     for (const filePath of devSlashCmdsFiles) {
       const command: DevSlashCommandType = await this.importFile(filePath);
@@ -100,7 +100,7 @@ export class ExtendedClient extends Client {
     // Prefix Commands
     const prefixCmds = [];
     const prefixCmdsFiles = await globPromise(
-        `${__dirname}/../modules/**/*{.ts,.js}`
+      `${__dirname}/../modules/**/*{.ts,.js}`
     );
     for (const filePath of prefixCmdsFiles) {
       const command: CommandType = await this.importFile(filePath);
@@ -113,7 +113,7 @@ export class ExtendedClient extends Client {
     // Developer Prefix Commands
     const devPrefixCmds = [];
     const devPrefixCmdsFiles = await globPromise(
-        `${__dirname}/../_dev/commands/*{.ts,.js}`
+      `${__dirname}/../_dev/commands/*{.ts,.js}`
     );
     for (const filePath of devPrefixCmdsFiles) {
       const command: DevCommandType = await this.importFile(filePath);

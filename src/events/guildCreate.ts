@@ -18,8 +18,8 @@ export default new Event("guildCreate", async (guild) => {
     const prefix = await getPrefix(guild.id);
     const serverCount = client.guilds.cache.size;
     const totalMemberCount = client.guilds.cache.reduce(
-        (a, b) => a + b.memberCount,
-        0
+      (a, b) => a + b.memberCount,
+      0
     );
     const webhookClient = new WebhookClient({
       id: process.env.GUILDADD_WEBHOOKID,
@@ -29,13 +29,13 @@ export default new Event("guildCreate", async (guild) => {
     guild.channels.cache.forEach((channel) => {
       if (channel.type === "GUILD_TEXT" && !messageChannel) {
         if (
-            (channel
-                    .permissionsFor(guild.me)
-                    .has(Permissions.FLAGS.VIEW_CHANNEL) &&
-                channel
-                    .permissionsFor(guild.me)
-                    .has(Permissions.FLAGS.SEND_MESSAGES)) ||
-            guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
+          (channel
+            .permissionsFor(guild.me)
+            .has(Permissions.FLAGS.VIEW_CHANNEL) &&
+            channel
+              .permissionsFor(guild.me)
+              .has(Permissions.FLAGS.SEND_MESSAGES)) ||
+          guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
         )
           messageChannel = channel;
       }

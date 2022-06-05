@@ -4,9 +4,7 @@
   "ownerId": "703994517971533935",
   "clientId": "841706730828333117",
   "default_lang": "en_US",
-  "developers": [
-    "703994517971533935"
-  ],
+  "developers": ["703994517971533935"],
 
   "modules": {
     "action": {

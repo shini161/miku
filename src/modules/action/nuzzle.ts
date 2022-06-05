@@ -10,7 +10,7 @@ export default new Command({
   channel_type: "GUILD_ONLY",
   required: true,
 
-  run: async ({message}) => {
+  run: async ({ message }) => {
     let text: string[];
     let images = ActionData[name].images;
     const color = Colors.celestialBlue;

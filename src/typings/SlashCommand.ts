@@ -22,6 +22,6 @@ type RunFunction = (options: RunOptions) => any;
 export type SlashCommandType = {
   userPermissions?: PermissionResolvable[];
   cooldown?: number | "Module";
-  channel_type?: "GUILD_ONLY" | "DM_ONLY" | "ALL"
+  channel_type?: "GUILD_ONLY" | "DM_ONLY" | "ALL";
   run: RunFunction;
 } & ChatInputApplicationCommandData;

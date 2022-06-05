@@ -7,8 +7,8 @@ import config from "../config.json";
 export default new Event("messageCreate", async (message) => {
   const clientId = client.user.id;
   if (
-      message.content !== `<@${clientId}>` &&
-      message.content !== `<@!${clientId}>`
+    message.content !== `<@${clientId}>` &&
+    message.content !== `<@!${clientId}>`
   )
     return;
   if (message.channel.type === "DM")
@@ -17,10 +17,10 @@ export default new Event("messageCreate", async (message) => {
     });
 
   if (
-      !message.guild.me
-          .permissionsIn(message.channel)
-          .has(Permissions.FLAGS.SEND_MESSAGES) &&
-      !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
+    !message.guild.me
+      .permissionsIn(message.channel)
+      .has(Permissions.FLAGS.SEND_MESSAGES) &&
+    !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
   )
     return;
   const prefix = await getPrefix(message.guildId);
