@@ -1,7 +1,7 @@
 import {Command} from "../../structures/Command";
 import {ColorResolvable, Permissions} from "discord.js";
-import Colors from "../../assets/colors.json";
-import config from "../../assets/config.json";
+import Colors from "../../../assets/colors.json";
+import config from "../../config.json";
 import getPrefix from "../../utils/getPrefix";
 
 export default new Command({

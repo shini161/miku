@@ -1,7 +1,7 @@
 import { Command } from "../../structures/Command";
 import { ColorResolvable, Permissions } from "discord.js";
-import Colors from "../../assets/colors.json";
-import config from "../../assets/config.json";
+import Colors from "../../../assets/colors.json";
+import config from "../../config.json";
 import getPrefix from "../../utils/getPrefix";
 
 export default new Command({
@@ -28,15 +28,15 @@ export default new Command({
       };
 
       if (
-        !message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS) &&
-        !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
+          !message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS) &&
+          !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
       )
         return message.reply({
           content: "You don't have permission to run this command!",
         });
       if (
-        !message.guild.me.permissions.has(Permissions.FLAGS.BAN_MEMBERS) &&
-        !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
+          !message.guild.me.permissions.has(Permissions.FLAGS.BAN_MEMBERS) &&
+          !message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
       )
         return message.reply({
           content: "I don't have permission to do that!",
@@ -55,42 +55,42 @@ export default new Command({
           });
 
         client.users
-          .fetch(id)
-          .then(async (user) => {
-            const channelEmbed = {
-              title: `${user.tag}  (${id}) has been unbanned!`,
-              description: `Reason: ${reason} \nModerator: ${message.author.tag}  (${message.author.id})`,
-              timestamp: new Date(),
-              color: color as ColorResolvable,
-            };
-            const dmEmbed = {
-              title: `You were unbanned from **${message.guild.name}!**`,
-              description: `Reason: ${reason} \nModerator: ${message.author.tag}  (${message.author.id})`,
-              timestamp: new Date(),
-              color: color as ColorResolvable,
-            };
+            .fetch(id)
+            .then(async (user) => {
+              const channelEmbed = {
+                title: `${user.tag}  (${id}) has been unbanned!`,
+                description: `Reason: ${reason} \nModerator: ${message.author.tag}  (${message.author.id})`,
+                timestamp: new Date(),
+                color: color as ColorResolvable,
+              };
+              const dmEmbed = {
+                title: `You were unbanned from **${message.guild.name}!**`,
+                description: `Reason: ${reason} \nModerator: ${message.author.tag}  (${message.author.id})`,
+                timestamp: new Date(),
+                color: color as ColorResolvable,
+              };
 
-            message.guild.members.unban(id).catch(() => {
-              return message.reply({
-                content: "Sorry, an error has occured!",
-              });
-            });
-            if (!user.bot) {
-              user
-                .send({
-                  embeds: [dmEmbed],
-                })
-                .catch((err) => {
-                  console.log(err);
+              message.guild.members.unban(id).catch(() => {
+                return message.reply({
+                  content: "Sorry, an error has occured!",
                 });
-            }
-            return message.channel.send({
-              embeds: [channelEmbed],
+              });
+              if (!user.bot) {
+                user
+                    .send({
+                      embeds: [dmEmbed],
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                    });
+              }
+              return message.channel.send({
+                embeds: [channelEmbed],
+              });
+            })
+            .catch((err) => {
+              return;
             });
-          })
-          .catch((err) => {
-            return;
-          });
       }
     } catch (err) {
       console.log(err);
