@@ -1,8 +1,9 @@
+/*
 import { Command } from "../../structures/Command";
 import { ColorResolvable } from "discord.js";
 import { get } from "request-promise-native";
-import Colors from "../../assets/colors.json";
-import config from "../../assets/config.json";
+import Colors from "../../../assets/colors.json";
+import config from "../../config.json";
 
 export default new Command({
   name: "random",
@@ -141,3 +142,4 @@ export default new Command({
     }
   },
 });
+*/
