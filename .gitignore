@@ -32,6 +32,8 @@ src/modules/setup/setLanguage.ts
 
 src/modules/utility/random.ts
 
+src/structures/Player.ts
+
 src/slashCmds/economy
 src/slashCmds/giveaway
 src/slashCmds/leveling
