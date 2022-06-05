@@ -1,7 +1,6 @@
 import { Command } from "../../structures/Command";
-import Colors from "../../assets/colors.json";
-import config from "../../assets/config.json";
-import { get } from "request-promise-native";
+import Colors from "../../../assets/colors.json";
+import axios from "axios";
 import { ColorResolvable } from "discord.js";
 import getPrefix from "../../utils/getPrefix";
 
@@ -13,7 +12,7 @@ export default new Command({
 
   run: async ({ client, message, args }) => {
     try {
-      const prefix = await getPrefix(message.guild.id);
+      const prefix = await getPrefix(message.guildId);
       const color = Colors.celestialBlue;
 
       const syntaxError = {
@@ -34,21 +33,21 @@ export default new Command({
           embeds: [syntaxError],
         });
 
-      const option = {
-        url: `https://kitsu.io/api/edge/manga?filter[text]-${query}`,
-        method: "GET",
-        headers: {
-          "Content-type": "application/vnd.api+json",
-          Accept: "application/vnd.api+json",
-        },
-        json: true,
-      };
-
-      const res = await get(option).catch(() => {
-        return message.reply({
-          content: "No results were found!",
-        });
-      });
+      const res = await axios
+          .get(`https://kitsu.io/api/edge/manga?filter[text]-${query}`, {
+            method: "GET",
+            headers: {
+              "Content-type": "application/vnd.api+json",
+              Accept: "application/vnd.api+json",
+            },
+            responseType: "json",
+          })
+          .catch(() => {
+            message.reply({
+              content: "No results were found!",
+            });
+            return;
+          });
 
       if (!res)
         return message.reply({
@@ -77,60 +76,60 @@ export default new Command({
           {
             name: "🗓️ Aired",
             value:
-              manga.attributes.startDate && manga.attributes.endDate
-                ? manga.attributes.startDate == manga.attributes.endDate
-                  ? `**${manga.attributes.startDate}**`
-                  : `From **${
-                      manga.attributes.startDate
-                        ? manga.attributes.startDate
-                        : "N/A"
+                manga.attributes.startDate && manga.attributes.endDate
+                    ? manga.attributes.startDate == manga.attributes.endDate
+                        ? `**${manga.attributes.startDate}**`
+                        : `From **${
+                            manga.attributes.startDate
+                                ? manga.attributes.startDate
+                                : "N/A"
+                        }** to **${
+                            manga.attributes.endDate
+                                ? manga.attributes.endDate
+                                : "N/A"
+                        }**`
+                    : `From **${
+                        manga.attributes.startDate
+                            ? manga.attributes.startDate
+                            : "N/A"
                     }** to **${
-                      manga.attributes.endDate
-                        ? manga.attributes.endDate
-                        : "N/A"
-                    }**`
-                : `From **${
-                    manga.attributes.startDate
-                      ? manga.attributes.startDate
-                      : "N/A"
-                  }** to **${
-                    manga.attributes.endDate ? manga.attributes.endDate : "N/A"
-                  }**`,
+                        manga.attributes.endDate ? manga.attributes.endDate : "N/A"
+                    }**`,
             inline: false,
           },
           {
             name: "📰 Chapters",
             value: `${
-              manga.attributes.chapterCount
-                ? manga.attributes.chapterCount
-                : "N/A"
+                manga.attributes.chapterCount
+                    ? manga.attributes.chapterCount
+                    : "N/A"
             }`,
             inline: true,
           },
           {
             name: "📚 Volumes",
             value: `${
-              manga.attributes.volumeCount
-                ? manga.attributes.volumeCount
-                : "N/A"
+                manga.attributes.volumeCount
+                    ? manga.attributes.volumeCount
+                    : "N/A"
             }`,
             inline: true,
           },
           {
             name: "⭐ Average Rating",
             value: `${
-              manga.attributes.averageRating
-                ? manga.attributes.averageRating
-                : "N/A"
+                manga.attributes.averageRating
+                    ? manga.attributes.averageRating
+                    : "N/A"
             }`,
             inline: true,
           },
           {
             name: "🏆 Rank",
             value: `${
-              manga.attributes.ratingRank
-                ? "**TOP " + manga.attributes.ratingRank + "**"
-                : "N/A"
+                manga.attributes.ratingRank
+                    ? "**TOP " + manga.attributes.ratingRank + "**"
+                    : "N/A"
             }`,
             inline: true,
           },
