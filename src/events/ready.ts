@@ -10,7 +10,6 @@ export default new Event("ready", () => {
       {
         name: "/help",
         type: "PLAYING",
-        url: "https://www.twitch.tv/.",
       },
     ],
   });
