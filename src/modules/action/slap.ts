@@ -1,6 +1,6 @@
 import { Command } from "../../structures/Command";
-import ActionData from "../../assets/action-module.json";
-import Colors from "../../assets/colors.json";
+import ActionData from "../../../assets/action-module.json";
+import Colors from "../../../assets/colors.json";
 import { ColorResolvable } from "discord.js";
 
 const name = "slap"; // command name

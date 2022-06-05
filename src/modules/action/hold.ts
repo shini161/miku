@@ -1,6 +1,6 @@
 import { Command } from "../../structures/Command";
-import ActionData from "../../assets/action-module.json";
-import Colors from "../../assets/colors.json";
+import ActionData from "../../../assets/action-module.json";
+import Colors from "../../../assets/colors.json";
 import { ColorResolvable } from "discord.js";
 
 const name = "hold"; // command name
@@ -29,7 +29,7 @@ export default new Command({
       default:
         text = [
           `${message.author.username} is holding ${target.user.username}'s hands.`,
-          `${message.author.username} holds ${target.user.username}'s hands.'`,
+          `${message.author.username} holds ${target.user.username}'s hands.`,
         ];
         sendEmbed(text, images);
     }
