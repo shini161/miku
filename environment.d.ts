@@ -2,15 +2,14 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       TOKEN: string;
-      DBHOST: string;
-      DBUSER: string;
-      DBPORT: number;
-      DBPASS: string;
+      DB_HOST: string;
+      DB_USER: string;
+      DB_PORT: number;
+      DB_PASS: string;
       DBNAME: string;
-      DBTIMEOUT: number;
       ENVIRONMENT: "dev" | "prod" | "debug";
-      GuildAddWebhookID: string;
-      GuildAddWebhookToken: string;
+      GUILDADD_WEBHOOKID: string;
+      GUILDADD_WEBHOOKTOKEN: string;
     }
   }
 }
