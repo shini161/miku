@@ -1,6 +1,6 @@
 import { Command } from "../../structures/Command";
 import { ColorResolvable } from "discord.js";
-import Colors from "../../assets/colors.json";
+import Colors from "../../../assets/colors.json";
 
 export default new Command({
   name: "membercount",

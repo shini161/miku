@@ -1,6 +1,6 @@
 import { Command } from "../../structures/Command";
 import { ColorResolvable } from "discord.js";
-import Colors from "../../assets/colors.json";
+import Colors from "../../../assets/colors.json";
 
 export default new Command({
   name: "avatar",
@@ -14,17 +14,17 @@ export default new Command({
 
       if (args[0]) {
         if (
-          args[0].startsWith("<@") &&
-          args[0].endsWith(">") &&
-          args[0].length == 21 &&
-          !isNaN(+args[0].slice(2, 20))
+            args[0].startsWith("<@") &&
+            args[0].endsWith(">") &&
+            args[0].length == 21 &&
+            !isNaN(+args[0].slice(2, 20))
         )
           id = args[0].slice(2, 20);
         if (
-          args[0].startsWith("<@!") &&
-          args[0].endsWith(">") &&
-          args[0].length == 22 &&
-          !isNaN(+args[0].slice(3, 21))
+            args[0].startsWith("<@!") &&
+            args[0].endsWith(">") &&
+            args[0].length == 22 &&
+            !isNaN(+args[0].slice(3, 21))
         )
           id = args[0].slice(3, 21);
         if (!isNaN(+args[0]) && args[0].length === 18) id = args[0];
@@ -33,33 +33,33 @@ export default new Command({
       getAvatar(id);
       function getAvatar(id: string) {
         client.users
-          .fetch(id)
-          .then((user) => {
-            const png = user.displayAvatarURL({ format: "png" });
-            const jpg = user.displayAvatarURL({ format: "jpg" });
-            const webp = user.displayAvatarURL({ format: "webp" });
+            .fetch(id)
+            .then((user) => {
+              const png = user.displayAvatarURL({ format: "png" });
+              const jpg = user.displayAvatarURL({ format: "jpg" });
+              const webp = user.displayAvatarURL({ format: "webp" });
 
-            const embed = {
-              author: {
-                name: `${user.tag}`,
-                icon_url: user.displayAvatarURL({ dynamic: true }),
-              },
-              title: "Avatar",
-              description: `**Link as:\n[png](${png}) | [jpg](${jpg}) | [webp](${webp})**`,
-              image: {
-                url: user.displayAvatarURL({ dynamic: true, size: 512 }),
-              },
-              color: color as ColorResolvable,
-            };
-            message.channel.send({
-              embeds: [embed],
+              const embed = {
+                author: {
+                  name: `${user.tag}`,
+                  icon_url: user.displayAvatarURL({ dynamic: true }),
+                },
+                title: "Avatar",
+                description: `**Link as:\n[png](${png}) | [jpg](${jpg}) | [webp](${webp})**`,
+                image: {
+                  url: user.displayAvatarURL({ dynamic: true, size: 512 }),
+                },
+                color: color as ColorResolvable,
+              };
+              message.channel.send({
+                embeds: [embed],
+              });
+            })
+            .catch(() => {
+              return message.reply({
+                content: "I couldn't find that user!",
+              });
             });
-          })
-          .catch(() => {
-            return message.reply({
-              content: "I couldn't find that user!",
-            });
-          });
       }
     } catch (err) {
       console.log(err);

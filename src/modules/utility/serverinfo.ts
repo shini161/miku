@@ -1,7 +1,7 @@
 import { Command } from "../../structures/Command";
 import { Permissions, ColorResolvable, GuildMember } from "discord.js";
-import Colors from "../../assets/colors.json";
-import Emojis from "../../assets/emojis.json";
+import Colors from "../../../assets/colors.json";
+import Emojis from "../../../assets/emojis.json";
 
 export default new Command({
   name: "serverinfo",
