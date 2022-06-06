@@ -89,6 +89,9 @@ export default new SlashCommand({
       case "ping":
         break;
       case "support":
+        await interaction.followUp({
+          content: `Do you need help with the bot?\nJoin our support server: ${supportInvite}`,
+        });
         break;
       default:
         await interaction.followUp({
