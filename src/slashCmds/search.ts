@@ -1,6 +1,5 @@
 import { SlashCommand } from "../structures/SlashCommand";
 import { ColorResolvable } from "discord.js";
-import ActionData from "../../assets/action-module.json";
 import Colors from "../../assets/colors.json";
 import axios from "axios";
 import ytsearch from "yt-search";
@@ -81,12 +80,13 @@ export default new SlashCommand({
     },
   ],
 
-  run: async ({ client, interaction, args }) => {
+  run: async ({ interaction }) => {
     const subCommand = interaction.options.getSubcommand();
     const query = interaction.options.getString("query");
 
     let res;
-    let embed: {};
+    let embed;
+    const typesArray = [];
     let color = Colors.celestialBlue;
 
     switch (subCommand) {
@@ -303,6 +303,87 @@ export default new SlashCommand({
         });
         break;
       case "pokemon":
+        res = await axios
+          .get(`https://pokeapi.co/api/v2/pokemon/${query}`, {
+            method: "GET",
+            headers: {
+              "Content-type": "application/vnd.api+json",
+              Accept: "application/vnd.api+json",
+            },
+            responseType: "json",
+          })
+          .catch(() => {
+            interaction.followUp({
+              content: "No results were found!",
+            });
+            return;
+          });
+
+        const { sprites, stats, weight, height, name, types } = res?.data[0];
+
+        if (!name) return;
+
+        embed = {
+          title: `${
+            name.charAt(0).toUpperCase() +
+            (name.length > 0 ? name.slice(1).toLowerCase() : "")
+          }`,
+          fields: [
+            {
+              name: "⚖ Weight",
+              value: `${weight ? weight : "N/A"}`,
+              inline: true,
+            },
+            {
+              name: "📐 Height",
+              value: `${height ? height : "N/A"}`,
+              inline: true,
+            },
+          ],
+          thumbnail: {
+            url: sprites.front_default ? `${sprites.front_default}` : null,
+          },
+          color: color as ColorResolvable,
+        };
+
+        const typesField = {
+          name: "🗂 Types",
+          value: "",
+          inline: false,
+        };
+
+        types.forEach((type: any) => typesArray.push(`${type.type.name}`));
+        if (typesArray.length > 0) {
+          if (typesArray.length > 1) {
+            typesField.value = `${
+              typesArray[0].charAt(0).toUpperCase() +
+              typesArray[0].slice(1).toLowerCase() +
+              ", " +
+              typesArray.slice(1).join(", ")
+            }`;
+          } else {
+            typesField.value = `${
+              typesArray[0].charAt(0).toUpperCase() +
+              typesArray[0].slice(1).toLowerCase()
+            }`;
+          }
+          embed.fields.push(typesField);
+        }
+
+        stats.forEach((stat) =>
+          embed.fields.push({
+            name: `${
+              stat.stat.name.charAt(0).toUpperCase() +
+              stat.stat.name.slice(1).toLowerCase()
+            }`,
+            value: `${stat.base_stat ? stat.base_stat : "N/A"}`,
+            inline: true,
+          })
+        );
+
+        await interaction.followUp({
+          embeds: [embed],
+        });
         break;
       case "urban":
         break;
