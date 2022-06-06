@@ -1196,6 +1196,24 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "tickle":
+        switch (target?.id) {
+          case undefined:
+            text = [`${interaction.user.username} wants to tickle someone.`];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [`${interaction.user.username}, you can't tickle yourself!`];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} is tickling ${target.username}.`,
+              `${interaction.user.username} tickles ${target.username}.`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
