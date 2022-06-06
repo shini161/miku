@@ -1,4 +1,7 @@
 import { SlashCommand } from "../structures/SlashCommand";
+import { ColorResolvable } from "discord.js";
+import ActionData from "../../assets/action-module.json";
+import Colors from "../../assets/colors.json";
 
 export default new SlashCommand({
   name: "action",
@@ -527,5 +530,56 @@ export default new SlashCommand({
     },
   ],
 
-  run: async ({ client, interaction, args }) => {},
+  run: async ({ interaction }) => {
+    const subCommand = interaction.options.getSubcommand();
+    const target = interaction.options.getUser("target");
+
+    let text: string[];
+    let images = ActionData?.[subCommand].images;
+    const color = Colors.celestialBlue;
+
+    switch (subCommand) {
+      case "bite":
+        switch (target?.id) {
+          case undefined:
+            text = [
+              `${interaction.user.username} wants to bite something.`,
+              `${interaction.user.username} needs to bite something.`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [`${interaction.user.username}, don't bite yourself!`];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} is biting ${target.username}.`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
+      default:
+        await interaction.followUp({
+          content: "❌ Sorry, an error has occurred!",
+        });
+    }
+
+    async function sendEmbed(text: string[], images: string[]) {
+      const embed = {
+        author: {
+          name: text[Math.floor(Math.random() * text.length)],
+          icon_url: interaction.user.displayAvatarURL({ dynamic: true }),
+        },
+        image: {
+          url: images[Math.floor(Math.random() * images.length)],
+        },
+        color: color as ColorResolvable,
+      };
+
+      await interaction.followUp({
+        embeds: [embed],
+      });
+    }
+  },
 });
