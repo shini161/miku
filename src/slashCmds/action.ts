@@ -857,6 +857,27 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "lick":
+        switch (target?.id) {
+          case undefined:
+            text = [`${interaction.user.username} is licking things...`];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [`${interaction.user.username}, are you a cat?`];
+            images = [
+              "https://media1.tenor.com/images/2834a92a3631f54354c49ec0bf7b7c1d/tenor.gif",
+            ];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} is licking ${target.username}.`,
+              `${interaction.user.username} licks ${target.username}.`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
