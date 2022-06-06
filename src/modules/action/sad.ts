@@ -22,23 +22,23 @@ export default new Command({
           `${message.author.username} is sad...`,
           `${message.author.username} is sad because of something...`,
         ];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
         break;
       case message.author.id:
         text = [
           `${message.author.username} is sad...`,
           `${message.author.username} is sad because of something...`,
         ];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is sad because of ${target.user.username}...`,
         ];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
     }
 
-    function sendEmbed(text: string[], images: string[]) {
+    async function sendEmbed(text: string[], images: string[]) {
       const embed = {
         author: {
           name: text[Math.floor(Math.random() * text.length)],
