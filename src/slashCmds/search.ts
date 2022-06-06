@@ -388,6 +388,16 @@ export default new SlashCommand({
       case "urban":
         break;
       case "youtube":
+        res = await ytsearch(query).catch(() => {
+          interaction.followUp({
+            content: "No results were found!",
+          });
+          return;
+        });
+
+        await interaction.followUp({
+          content: res.videos[0].url,
+        });
         break;
       default:
         await interaction.followUp({
