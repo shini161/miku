@@ -47,7 +47,7 @@ export default new Command({
         color: color as ColorResolvable,
       };
 
-      await message.channel.send({
+      message.channel.send({
         embeds: [embed],
       });
     }
