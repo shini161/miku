@@ -972,6 +972,19 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "punch":
+        switch (target?.id) {
+          case interaction.user.id:
+            text = [`${interaction.user.username}, don't punch yourself!`];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} gives ${target.username} a punch!`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
