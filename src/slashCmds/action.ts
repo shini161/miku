@@ -768,6 +768,22 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "hold":
+        switch (target?.id) {
+          case interaction.user.id:
+            text = [
+              `${interaction.user.username}, you can't hold you own hand...`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} is holding ${target.username}'s hands.`,
+              `${interaction.user.username} holds ${target.username}'s hands.`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
