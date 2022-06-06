@@ -87,6 +87,9 @@ export default new SlashCommand({
       case "patreon":
         break;
       case "ping":
+        await interaction.followUp({
+          content: `🏓  **|**  Pong! - **WebSocket: ${client.ws.ping}ms**`,
+        });
         break;
       case "support":
         await interaction.followUp({
