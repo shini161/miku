@@ -61,7 +61,7 @@ export class ExtendedClient extends Client {
 
     // Slash Commands
     const slashCmdsFiles = await globPromise(
-      `${__dirname}/../slashCmds/**/*{.ts,.js}`
+      `${__dirname}/../slashCmds/*{.ts,.js}`
     );
     for (const filePath of slashCmdsFiles) {
       const command: SlashCommandType = await this.importFile(filePath);
