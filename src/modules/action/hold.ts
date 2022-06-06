@@ -24,17 +24,17 @@ export default new Command({
         break;
       case message.author.id:
         text = [`${message.author.username}, you can't hold you own hand...`];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is holding ${target.user.username}'s hands.`,
           `${message.author.username} holds ${target.user.username}'s hands.`,
         ];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
     }
 
-    function sendEmbed(text: string[], images: string[]) {
+    async function sendEmbed(text: string[], images: string[]) {
       const embed = {
         author: {
           name: text[Math.floor(Math.random() * text.length)],

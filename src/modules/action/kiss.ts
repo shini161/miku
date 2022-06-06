@@ -22,24 +22,24 @@ export default new Command({
           `${message.author.username} needs a kiss!`,
           `${message.author.username} wants to be kissed by someone.`,
         ];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username}, how can you kiss yourself?`];
         images = [
           "https://media1.tenor.com/images/72bfd912fa78d4ea2337c8b62ab3e899/tenor.gif",
         ];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} kissed ${target.user.username}!`,
           `${message.author.username} is kissing ${target.user.username}!`,
         ];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
     }
 
-    function sendEmbed(text: string[], images: string[]) {
+    async function sendEmbed(text: string[], images: string[]) {
       const embed = {
         author: {
           name: text[Math.floor(Math.random() * text.length)],

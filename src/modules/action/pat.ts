@@ -19,21 +19,21 @@ export default new Command({
     switch (target?.id) {
       case undefined:
         text = [`${message.author.username} wants a pat...`];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username} wants a pat...`];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} pats ${target.user.username}.`,
           `${message.author.username} is patting ${target.user.username}.`,
         ];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
     }
 
-    function sendEmbed(text: string[], images: string[]) {
+    async function sendEmbed(text: string[], images: string[]) {
       const embed = {
         author: {
           name: text[Math.floor(Math.random() * text.length)],
