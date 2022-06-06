@@ -600,6 +600,23 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "bored":
+        switch (target?.id) {
+          case undefined:
+            text = [`${interaction.user.username} is bored.`];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [`${interaction.user.username} is bored.`];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} is bored because of ${target.username}.`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
