@@ -895,6 +895,29 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "nom":
+        switch (target?.id) {
+          case undefined:
+            text = [
+              `${interaction.user.username} wants to nom something.`,
+              `${interaction.user.username} needs to nom something.`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [
+              `${interaction.user.username} wants to nom something.`,
+              `${interaction.user.username} needs to nom something.`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} is nomming on ${target.username}.`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
