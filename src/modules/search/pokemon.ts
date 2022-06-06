@@ -61,7 +61,7 @@ export default new Command({
 
       const embed = {
         title: `${
-          name.charAt(0).toUpperCase(name.charAt(0)) +
+          name.charAt(0).toUpperCase() +
           (name.length > 0 ? name.slice(1).toLowerCase() : "")
         }`,
         fields: [
