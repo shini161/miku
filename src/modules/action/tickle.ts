@@ -19,21 +19,21 @@ export default new Command({
     switch (target?.id) {
       case undefined:
         text = [`${message.author.username} wants to tickle someone.`];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
         break;
       case message.author.id:
         text = [`${message.author.username}, you can't tickle yourself!`];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
         break;
       default:
         text = [
           `${message.author.username} is tickling ${target.user.username}.`,
           `${message.author.username} tickles ${target.user.username}.`,
         ];
-        sendEmbed(text, images);
+        await sendEmbed(text, images);
     }
 
-    function sendEmbed(text: string[], images: string[]) {
+    async function sendEmbed(text: string[], images: string[]) {
       const embed = {
         author: {
           name: text[Math.floor(Math.random() * text.length)],
