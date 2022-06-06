@@ -918,6 +918,27 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "nuzzle":
+        switch (target?.id) {
+          case undefined:
+            text = [
+              `${interaction.user.username} wants to nuzzle with someone...`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [
+              `${interaction.user.username} wants to nuzzle with someone...`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} is nuzzling with ${target.username}.`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
