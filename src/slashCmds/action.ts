@@ -1090,6 +1090,24 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "sleep":
+        switch (target?.id) {
+          case undefined:
+            text = [`${interaction.user.username} is sleeping.`];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [`${interaction.user.username} is sleeping.`];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} wants to sleep with ${target.username}!`,
+              `${interaction.user.username} is sleeping with ${target.username}!`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
