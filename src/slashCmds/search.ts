@@ -91,7 +91,7 @@ export default new SlashCommand({
 
     switch (subCommand) {
       case "anime":
-        await axios
+        res = await axios
           .get(`https://kitsu.io/api/edge/anime?filter[text]-${query}`, {
             method: "GET",
             headers: {
@@ -197,6 +197,110 @@ export default new SlashCommand({
         });
         break;
       case "manga":
+        res = await axios
+          .get(`https://kitsu.io/api/edge/manga?filter[text]-${query}`, {
+            method: "GET",
+            headers: {
+              "Content-type": "application/vnd.api+json",
+              Accept: "application/vnd.api+json",
+            },
+            responseType: "json",
+          })
+          .catch(() => {
+            interaction.followUp({
+              content: "No results were found!",
+            });
+            return;
+          });
+
+        const manga = res?.data[0];
+        embed = {
+          title: `${manga.attributes.titles.en_jp}`,
+          url: `${manga.links.self}`,
+          thumbnail: {
+            url: manga.attributes.posterImage.original,
+          },
+          description: manga.attributes.synopsis,
+          fields: [
+            {
+              name: "⏳ Status",
+              value: manga.attributes.status,
+              inline: true,
+            },
+            {
+              name: "🗂 Type",
+              value: manga.type,
+              inline: true,
+            },
+            {
+              name: "🗓️ Aired",
+              value:
+                manga.attributes.startDate && manga.attributes.endDate
+                  ? manga.attributes.startDate == manga.attributes.endDate
+                    ? `**${manga.attributes.startDate}**`
+                    : `From **${
+                        manga.attributes.startDate
+                          ? manga.attributes.startDate
+                          : "N/A"
+                      }** to **${
+                        manga.attributes.endDate
+                          ? manga.attributes.endDate
+                          : "N/A"
+                      }**`
+                  : `From **${
+                      manga.attributes.startDate
+                        ? manga.attributes.startDate
+                        : "N/A"
+                    }** to **${
+                      manga.attributes.endDate
+                        ? manga.attributes.endDate
+                        : "N/A"
+                    }**`,
+              inline: false,
+            },
+            {
+              name: "📰 Chapters",
+              value: `${
+                manga.attributes.chapterCount
+                  ? manga.attributes.chapterCount
+                  : "N/A"
+              }`,
+              inline: true,
+            },
+            {
+              name: "📚 Volumes",
+              value: `${
+                manga.attributes.volumeCount
+                  ? manga.attributes.volumeCount
+                  : "N/A"
+              }`,
+              inline: true,
+            },
+            {
+              name: "⭐ Average Rating",
+              value: `${
+                manga.attributes.averageRating
+                  ? manga.attributes.averageRating
+                  : "N/A"
+              }`,
+              inline: true,
+            },
+            {
+              name: "🏆 Rank",
+              value: `${
+                manga.attributes.ratingRank
+                  ? "**TOP " + manga.attributes.ratingRank + "**"
+                  : "N/A"
+              }`,
+              inline: true,
+            },
+          ],
+          color: color as ColorResolvable,
+        };
+
+        await interaction.followUp({
+          embeds: [embed],
+        });
         break;
       case "pokemon":
         break;
