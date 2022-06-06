@@ -939,6 +939,24 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "pat":
+        switch (target?.id) {
+          case undefined:
+            text = [`${interaction.user.username} wants a pat...`];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [`${interaction.user.username} wants a pat...`];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} pats ${target.username}.`,
+              `${interaction.user.username} is patting ${target.username}.`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
