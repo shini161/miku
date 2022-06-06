@@ -985,6 +985,29 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "run":
+        switch (target?.id) {
+          case undefined:
+            text = [
+              `${interaction.user.username} is running.`,
+              `${interaction.user.username} is running away from something.`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [
+              `${interaction.user.username} is running.`,
+              `${interaction.user.username} is running away from something.`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} is running away from ${target.username}.`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
