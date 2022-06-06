@@ -732,6 +732,29 @@ export default new SlashCommand({
             await sendEmbed(text, images);
         }
         break;
+      case "happy":
+        switch (target?.id) {
+          case undefined:
+            text = [
+              `${interaction.user.username} is happy!`,
+              `${interaction.user.username} is happy because of something!`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          case interaction.user.id:
+            text = [
+              `${interaction.user.username} is happy!`,
+              `${interaction.user.username} is happy because of something!`,
+            ];
+            await sendEmbed(text, images);
+            break;
+          default:
+            text = [
+              `${interaction.user.username} is happy because of ${target.username}!`,
+            ];
+            await sendEmbed(text, images);
+        }
+        break;
       default:
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
