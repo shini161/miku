@@ -1,10 +1,5 @@
 import { SlashCommand } from "../structures/SlashCommand";
-import {
-  Permissions,
-  ColorResolvable,
-  GuildChannelResolvable,
-} from "discord.js";
-import ActionData from "../../assets/action-module.json";
+import { ColorResolvable } from "discord.js";
 import { CommandType } from "../typings/Command";
 import { Duration } from "luxon";
 import Emojis from "../../assets/emojis.json";
@@ -66,13 +61,103 @@ export default new SlashCommand({
       "https://discord.com/api/oauth2/authorize?client_id=841706730828333117&permissions=141636791750&scope=applications.commands%20bot";
     const supportInvite = "https://discord.gg/DdT3ncvcgh";
 
+    let embed: {};
+
     switch (subCommand) {
       case "donate":
         break;
       case "info-bot":
+        const uptime = Duration.fromMillis(client.uptime)
+          .shiftTo("days", "hours", "minutes", "seconds")
+          .toFormat("d 'days', h 'hours', m 'minutes', s 'seconds'", {
+            floor: true,
+          });
+
+        const serverCount = client.guilds.cache.size;
+        const userCount = client.guilds.cache.reduce(
+          (a, b) => a + b.memberCount,
+          0
+        );
+        const owner = client.users.cache.get(config.ownerId);
+
+        if (!owner)
+          return interaction.followUp({
+            content: "❌ Sorry, an error has occurred!",
+          });
+
+        let namedCommands = 0;
+        let totalCommands = 0;
+        const cmdFiles = await globPromise(
+          `${__dirname}/../modules/**/*{.ts,.js}`
+        );
+        await Promise.all(
+          cmdFiles.map(async (filePath) => {
+            const cmd: CommandType = await importFile(filePath);
+            if (cmd?.name) namedCommands++;
+            totalCommands++;
+          })
+        );
+
+        embed = {
+          author: {
+            name: `${client.user.tag}`,
+            icon_url: client.user.displayAvatarURL({ dynamic: true }),
+          },
+          fields: [
+            {
+              name: "Version",
+              value: version,
+              inline: true,
+            },
+            {
+              name: "Library",
+              value: "DiscordJS",
+              inline: true,
+            },
+            {
+              name: "Owner",
+              value: owner.tag,
+              inline: true,
+            },
+            {
+              name: "Servers",
+              value: `${serverCount}`,
+              inline: true,
+            },
+            {
+              name: "Users",
+              value: `${userCount}`,
+              inline: true,
+            },
+            {
+              name: "Commands",
+              value: `${namedCommands} of ${totalCommands}`,
+              inline: true,
+            },
+            {
+              name: "Invite",
+              value: "[dsc.gg/miku-bot](https://dsc.gg/miku-invite)",
+              inline: true,
+            },
+            {
+              name: "Support",
+              value: "[dsc.gg/miku-support](https://dsc.gg/mikusupport)",
+              inline: true,
+            },
+          ],
+          footer: {
+            text: `Uptime: ${uptime}`,
+          },
+          color: color as ColorResolvable,
+        };
+
+        await interaction.followUp({
+          embeds: [embed],
+        });
+
         break;
       case "invite":
-        const embed = {
+        embed = {
           title: "Do you want to invite me?",
           description: `Click [here](${botInvite}) to invite me to your server!`,
           color: color as ColorResolvable,
@@ -100,6 +185,10 @@ export default new SlashCommand({
         await interaction.followUp({
           content: "❌ Sorry, an error has occurred!",
         });
+    }
+
+    async function importFile(filePath: string) {
+      return (await import(filePath))?.default;
     }
   },
 });
