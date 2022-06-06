@@ -57,5 +57,43 @@ export default new SlashCommand({
     },
   ],
 
-  run: async ({ client, interaction, args }) => {},
+  run: async ({ client, interaction, args }) => {
+    const subCommand = interaction.options.getSubcommand();
+
+    const color = Colors.celestialBlue;
+    const { greenTick, redTick, greenTickCustom, redTickCustom } = Emojis;
+    const botInvite =
+      "https://discord.com/api/oauth2/authorize?client_id=841706730828333117&permissions=141636791750&scope=applications.commands%20bot";
+    const supportInvite = "https://discord.gg/DdT3ncvcgh";
+
+    switch (subCommand) {
+      case "donate":
+        break;
+      case "info-bot":
+        break;
+      case "invite":
+        const embed = {
+          title: "Do you want to invite me?",
+          description: `Click [here](${botInvite}) to invite me to your server!`,
+          color: color as ColorResolvable,
+        };
+
+        await interaction.followUp({
+          embeds: [embed],
+        });
+        break;
+      case "links":
+        break;
+      case "patreon":
+        break;
+      case "ping":
+        break;
+      case "support":
+        break;
+      default:
+        await interaction.followUp({
+          content: "❌ Sorry, an error has occurred!",
+        });
+    }
+  },
 });
