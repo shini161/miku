@@ -823,6 +823,9 @@ export default new SlashCommand({
               `${interaction.user.username} needs a kiss!`,
               `${interaction.user.username} wants to be kissed by someone.`,
             ];
+            images = [
+              "https://media1.tenor.com/images/72bfd912fa78d4ea2337c8b62ab3e899/tenor.gif",
+            ];
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
