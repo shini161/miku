@@ -6,6 +6,7 @@ import Colors from "../../assets/colors.json";
 export default new SlashCommand({
   name: "action",
   description: "action/roleplay commands",
+  channel_type: "GUILD_ONLY",
   options: [
     {
       name: "1st",
