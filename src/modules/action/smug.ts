@@ -22,7 +22,7 @@ export default new Command({
     switch (target?.id) {
       case undefined:
         text = langs?.[guildLang].modules.action[name].target.none(
-          message.author.id
+          message.author.username
         );
         await sendEmbed(text, images);
         break;

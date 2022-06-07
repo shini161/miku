@@ -22,7 +22,7 @@ export default new Command({
     switch (target?.id) {
       case undefined:
         text = langs?.[guildLang].modules.action[name].target.none(
-          message.author.id
+          message.author.username
         );
         images = [
           "https://media1.tenor.com/images/72bfd912fa78d4ea2337c8b62ab3e899/tenor.gif",
