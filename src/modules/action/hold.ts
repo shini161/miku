@@ -2,6 +2,8 @@ import { Command } from "../../structures/Command";
 import ActionData from "../../../assets/action-module.json";
 import Colors from "../../../assets/colors.json";
 import { ColorResolvable } from "discord.js";
+import getLangGuild from "../../utils/getLang-guild";
+import langs from "../../../assets/langs/langs";
 
 const name = "hold"; // command name
 export default new Command({
@@ -15,6 +17,7 @@ export default new Command({
     let images = ActionData[name].images;
     const color = Colors.celestialBlue;
     const target = message.mentions.members.first();
+    const guildLang = await getLangGuild(message.guildId);
 
     switch (target?.id) {
       case undefined:
@@ -23,14 +26,16 @@ export default new Command({
         });
         break;
       case message.author.id:
-        text = [`${message.author.username}, you can't hold you own hand...`];
+        text = langs?.[guildLang].modules.action[name].target.self(
+          message.author.username
+        );
         await sendEmbed(text, images);
         break;
       default:
-        text = [
-          `${message.author.username} is holding ${target.user.username}'s hands.`,
-          `${message.author.username} holds ${target.user.username}'s hands.`,
-        ];
+        text = langs?.[guildLang].modules.action[name].target.default(
+          message.author.username,
+          target.user.username
+        );
         await sendEmbed(text, images);
     }
 

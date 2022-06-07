@@ -2,6 +2,8 @@ import { Command } from "../../structures/Command";
 import ActionData from "../../../assets/action-module.json";
 import Colors from "../../../assets/colors.json";
 import { ColorResolvable } from "discord.js";
+import getLangGuild from "../../utils/getLang-guild";
+import langs from "../../../assets/langs/langs";
 
 const name = "lick"; // command name
 export default new Command({
@@ -15,24 +17,29 @@ export default new Command({
     let images = ActionData[name].images;
     const color = Colors.celestialBlue;
     const target = message.mentions.members.first();
+    const guildLang = await getLangGuild(message.guildId);
 
     switch (target?.id) {
       case undefined:
-        text = [`${message.author.username} is licking things...`];
+        text = langs?.[guildLang].modules.action[name].target.none(
+          message.author.id
+        );
         await sendEmbed(text, images);
         break;
       case message.author.id:
-        text = [`${message.author.username}, are you a cat?`];
+        text = langs?.[guildLang].modules.action[name].target.self(
+          message.author.username
+        );
         images = [
           "https://media1.tenor.com/images/2834a92a3631f54354c49ec0bf7b7c1d/tenor.gif",
         ];
         await sendEmbed(text, images);
         break;
       default:
-        text = [
-          `${message.author.username} is licking ${target.user.username}.`,
-          `${message.author.username} licks ${target.user.username}.`,
-        ];
+        text = langs?.[guildLang].modules.action[name].target.default(
+          message.author.username,
+          target.user.username
+        );
         await sendEmbed(text, images);
     }
 
