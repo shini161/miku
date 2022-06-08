@@ -60,7 +60,6 @@ export default new SlashCommand({
     const timeTypes = langs[lang].common.timeTypes;
 
     const color = Colors.celestialBlue;
-    const { greenTick, redTick, greenTickCustom, redTickCustom } = Emojis;
     const botInvite =
       "https://discord.com/api/oauth2/authorize?client_id=841706730828333117&permissions=141636791750&scope=applications.commands%20bot";
     const supportInvite = "https://discord.gg/DdT3ncvcgh";
