@@ -12,6 +12,8 @@ import { promisify } from "util";
 import Colors from "../../../assets/colors.json";
 import config from "../../config.json";
 import { version } from ".././../../package.json";
+import getLangUser from "../../utils/getLang-user";
+import langs from "../../../assets/langs/langs";
 
 const globPromise = promisify(glob);
 
@@ -24,12 +26,18 @@ export default new Command({
   run: async ({ client, message }) => {
     try {
       const color = Colors.celestialBlue;
+      const lang = await getLangUser(message.author.id);
+      const timeTypes = langs[lang].common.timeTypes;
       const { greenTick, redTick, greenTickCustom, redTickCustom } = Emojis;
       const uptime = Duration.fromMillis(client.uptime)
         .shiftTo("days", "hours", "minutes", "seconds")
-        .toFormat("d 'days', h 'hours', m 'minutes', s 'seconds'", {
-          floor: true,
-        });
+        .toFormat(
+          `d '${timeTypes.days}', h '${timeTypes.hours}', m '${timeTypes.minutes}', s '${timeTypes.seconds}'`,
+          {
+            floor: true,
+          }
+        )
+        .toLowerCase();
 
       const serverCount = client.guilds.cache.size;
       const userCount = client.guilds.cache.reduce(
@@ -40,7 +48,7 @@ export default new Command({
 
       if (!owner)
         return message.reply({
-          content: "Sorry, an error has occurred!",
+          content: langs?.[lang].common.errorOccurred,
         });
 
       let namedCommands = 0;
@@ -61,42 +69,42 @@ export default new Command({
         },
         fields: [
           {
-            name: "Version",
+            name: langs?.[lang].common.version,
             value: version,
             inline: true,
           },
           {
-            name: "Library",
+            name: langs?.[lang].common.library,
             value: "DiscordJS",
             inline: true,
           },
           {
-            name: "Owner",
+            name: langs?.[lang].common.owner,
             value: owner.tag,
             inline: true,
           },
           {
-            name: "Servers",
+            name: langs?.[lang].common.servers,
             value: `${serverCount}`,
             inline: true,
           },
           {
-            name: "Users",
+            name: langs?.[lang].common.users,
             value: `${userCount}`,
             inline: true,
           },
           {
-            name: "Commands",
+            name: langs?.[lang].common.commands,
             value: `${namedCommands} of ${totalCommands}`,
             inline: true,
           },
           {
-            name: "Invite",
+            name: langs?.[lang].common.invite,
             value: "[dsc.gg/miku-bot](https://dsc.gg/miku-invite)",
             inline: true,
           },
           {
-            name: "Support",
+            name: langs?.[lang].common.support,
             value: "[dsc.gg/miku-support](https://dsc.gg/mikusupport)",
             inline: true,
           },
