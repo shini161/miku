@@ -6,6 +6,8 @@ import {
 } from "discord.js";
 import Emojis from "../../../assets/emojis.json";
 import Colors from "../../../assets/colors.json";
+import getLangUser from "../../utils/getLang-user";
+import langs from "../../../assets/langs/langs";
 
 export default new Command({
   name: "invite",
@@ -15,13 +17,15 @@ export default new Command({
   run: async ({ message }) => {
     try {
       const color = Colors.celestialBlue;
+      const lang = await getLangUser(message.author.id);
       const { greenTick, redTick, greenTickCustom, redTickCustom } = Emojis;
       const invite =
         "https://discord.com/api/oauth2/authorize?client_id=841706730828333117&permissions=141636791750&scope=applications.commands%20bot";
 
       const embed = {
-        title: "Do you want to invite me?",
-        description: `Click [here](${invite}) to invite me to your server!`,
+        title: langs[lang].modules.information.invite.embed.title,
+        description:
+          langs[lang].modules.information.invite.embed.description(invite),
         color: color as ColorResolvable,
       };
 
