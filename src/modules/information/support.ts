@@ -1,6 +1,8 @@
 import { Command } from "../../structures/Command";
 import { Permissions, GuildChannelResolvable } from "discord.js";
 import Emojis from "../../../assets/emojis.json";
+import getLangUser from "../../utils/getLang-user";
+import langs from "../../../assets/langs/langs";
 
 export default new Command({
   name: "support",
@@ -11,7 +13,8 @@ export default new Command({
     try {
       const { greenTick, redTick, greenTickCustom, redTickCustom } = Emojis;
       const invite = "https://discord.gg/DdT3ncvcgh";
-      const content = `Do you need help with the bot?\nJoin our support server: ${invite}`;
+      const lang = await getLangUser(message.author.id);
+      const content = langs[lang].modules.information.support.content(invite);
 
       if (
         message.guild.me
