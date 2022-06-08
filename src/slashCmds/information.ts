@@ -2,7 +2,6 @@ import { SlashCommand } from "../structures/SlashCommand";
 import { ColorResolvable } from "discord.js";
 import { CommandType } from "../typings/Command";
 import { Duration } from "luxon";
-import Emojis from "../../assets/emojis.json";
 import glob from "glob";
 import { promisify } from "util";
 import Colors from "../../assets/colors.json";
@@ -54,7 +53,7 @@ export default new SlashCommand({
     },
   ],
 
-  run: async ({ client, interaction, args }) => {
+  run: async ({ client, interaction }) => {
     const subCommand = interaction.options.getSubcommand();
     const lang = await getLangUser(interaction.user.id);
     const timeTypes = langs[lang].common.timeTypes;
