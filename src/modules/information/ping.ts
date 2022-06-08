@@ -1,4 +1,6 @@
 import { Command } from "../../structures/Command";
+import getLangUser from "../../utils/getLang-user";
+import langs from "../../../assets/langs/langs";
 
 export default new Command({
   name: "ping",
@@ -7,6 +9,7 @@ export default new Command({
   required: true,
 
   run: async ({ client, message }) => {
+    const lang = await getLangUser(message.author.id);
     let msg = await message.reply({
       content: "🏓  **|**  Pong!",
     });
@@ -18,7 +21,7 @@ export default new Command({
 
     msg
       .edit({
-        content: `🏓  **|**  Pong! - **Time taken: ${botLatency}ms** (WebSocket: ${wsLatency}ms)`,
+        content: `🏓  **|**  Pong! - **${langs[lang].common.time_taken}: ${botLatency}ms** (WebSocket: ${wsLatency}ms)`,
       })
       .catch(() => {
         return;
