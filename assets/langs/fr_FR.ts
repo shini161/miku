@@ -1,4 +1,36 @@
-export default {
+const lang = {
+  common: {
+    errorOccurred: "❌ Sorry, an error has occurred!",
+    version: "Version",
+    library: "Library",
+    owner: "Owner",
+    user: "User",
+    users: "Users",
+    command: "Command",
+    commands: "Commands",
+    invite: "Invite",
+    invites: "Invites",
+    support: "Support",
+    server: "Server",
+    servers: "Servers",
+    time_taken: "Time taken",
+    timeTypes: {
+      years: "Years",
+      year: "Year",
+      weeks: "Weeks",
+      week: "Week",
+      days: "Days",
+      day: "Day",
+      hours: "Hours",
+      hour: "Hour",
+      minutes: "Minutes",
+      minute: "Minute",
+      seconds: "Seconds",
+      second: "Second",
+      milliseconds: "Milliseconds",
+      millisecond: "Millisecond",
+    },
+  },
   modules: {
     action: {
       bite: {
@@ -610,9 +642,22 @@ export default {
       gwend: {},
       gwlist: {},
       gwreroll: {},
-      gwstart: {},
     },
-    information: {},
+    information: {
+      invite: {
+        embed: {
+          title: "Do you want to invite me?",
+          description(invite: string) {
+            return `Click [here](${invite}) to invite me to your server!`;
+          },
+        },
+      },
+      support: {
+        content(invite: string) {
+          return `Do you need help with the bot?\nJoin our support server: ${invite}`;
+        },
+      },
+    },
     leveling: {},
     moderation: {},
     music: {},
@@ -622,3 +667,5 @@ export default {
     utility: {},
   },
 };
+
+export default lang;
