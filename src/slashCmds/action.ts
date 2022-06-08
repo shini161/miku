@@ -2,6 +2,8 @@ import { SlashCommand } from "../structures/SlashCommand";
 import { ColorResolvable } from "discord.js";
 import ActionData from "../../assets/action-module.json";
 import Colors from "../../assets/colors.json";
+import getLangGuild from "../utils/getLang-guild";
+import langs from "../../assets/langs/langs";
 
 export default new SlashCommand({
   name: "action",
@@ -534,6 +536,7 @@ export default new SlashCommand({
   run: async ({ interaction }) => {
     const subCommand = interaction.options.getSubcommand();
     const target = interaction.options.getUser("target");
+    const guildLang = await getLangGuild(interaction.guildId);
 
     let text: string[];
     let images = ActionData?.[subCommand].images;
@@ -543,724 +546,835 @@ export default new SlashCommand({
       case "bite":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} wants to bite something.`,
-              `${interaction.user.username} needs to bite something.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username}, don't bite yourself!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is biting ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "blush":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} is blushing because of something.`,
-              `${interaction.user.username} blushed!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [
-              `${interaction.user.username} is blushing because of something.`,
-              `${interaction.user.username} blushed!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is blushing because of ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "boop":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} wants to get booped.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} wants to get booped.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is booping ${target.username}.`,
-              `${interaction.user.username} boops ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "bored":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is bored.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is bored.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is bored because of ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "bully":
         switch (target?.id) {
           case interaction.user.id:
-            text = [
-              `${interaction.user.username}, how can you bully yourself?`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is bullying ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "cry":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is crying!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is crying!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is crying because of ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "cuddle":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} needs to be cuddled!`,
-              `${interaction.user.username} wants to be cuddled!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username}, that's sad...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [`${interaction.user.username} cuddles ${target.username}.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "dance":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is dancing!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is dancing!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is dancing with ${target.username}!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "die":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} died.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} died.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} died because of ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "facepalm":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is facepalming.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is facepalming.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is facepalming at ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "greet":
         switch (target?.id) {
           case interaction.user.id:
-            text = [`${interaction.user.username}, that's sad...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} says hi to ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "happy":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} is happy!`,
-              `${interaction.user.username} is happy because of something!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [
-              `${interaction.user.username} is happy!`,
-              `${interaction.user.username} is happy because of something!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is happy because of ${target.username}!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "highfive":
         switch (target?.id) {
           case interaction.user.id:
-            text = [`${interaction.user.username} highfives with themselves.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} highfives with ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "hold":
         switch (target?.id) {
           case interaction.user.id:
-            text = [
-              `${interaction.user.username}, you can't hold you own hand...`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is holding ${target.username}'s hands.`,
-              `${interaction.user.username} holds ${target.username}'s hands.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "hug":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} needs a hug!`,
-              `${interaction.user.username} wants a hug!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username}, that's sad...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [`${interaction.user.username} hugs ${target.username}.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "kill":
         switch (target?.id) {
           case interaction.user.id:
-            text = [`${interaction.user.username}, don't kill yourself!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} killed ${target.username}!`,
-              `${interaction.user.username} is killing ${target.username}!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "kiss":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} needs a kiss!`,
-              `${interaction.user.username} wants to be kissed by someone.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             images = [
               "https://media1.tenor.com/images/72bfd912fa78d4ea2337c8b62ab3e899/tenor.gif",
             ];
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username}, how can you kiss yourself?`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             images = [
               "https://media1.tenor.com/images/72bfd912fa78d4ea2337c8b62ab3e899/tenor.gif",
             ];
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} kissed ${target.username}!`,
-              `${interaction.user.username} is kissing ${target.username}!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "laugh":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is laughing...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is laughing...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is laughing at ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "lick":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is licking things...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username}, are you a cat?`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             images = [
               "https://media1.tenor.com/images/2834a92a3631f54354c49ec0bf7b7c1d/tenor.gif",
             ];
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is licking ${target.username}.`,
-              `${interaction.user.username} licks ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "no":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} disagrees.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} disagrees.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} disagrees with ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "nom":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} wants to nom something.`,
-              `${interaction.user.username} needs to nom something.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [
-              `${interaction.user.username} wants to nom something.`,
-              `${interaction.user.username} needs to nom something.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is nomming on ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "nuzzle":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} wants to nuzzle with someone...`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [
-              `${interaction.user.username} wants to nuzzle with someone...`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is nuzzling with ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "pat":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} wants a pat...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} wants a pat...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} pats ${target.username}.`,
-              `${interaction.user.username} is patting ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "poke":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} wants to poke things...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} wants to poke things...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [`${interaction.user.username} pooks ${target.username}.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "punch":
         switch (target?.id) {
           case interaction.user.id:
-            text = [`${interaction.user.username}, don't punch yourself!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} gives ${target.username} a punch!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "run":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} is running.`,
-              `${interaction.user.username} is running away from something.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [
-              `${interaction.user.username} is running.`,
-              `${interaction.user.username} is running away from something.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is running away from ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "sad":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} is sad...`,
-              `${interaction.user.username} is sad because of something...`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [
-              `${interaction.user.username} is sad...`,
-              `${interaction.user.username} is sad because of something...`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is sad because of ${target.username}...`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "shoot":
         switch (target?.id) {
           case interaction.user.id:
-            text = [`${interaction.user.username}, don't shoot yourself!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [`${interaction.user.username} shoot ${target.username}!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "shy":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is shy...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is shy...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} hides from ${target.username}...`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "sip":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is sipping some juice.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is sipping some juice.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is sipping some juice with ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "slap":
         switch (target?.id) {
           case interaction.user.id:
-            text = [`${interaction.user.username}, don't slap yourself!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} slaps ${target.username}.`,
-              `${interaction.user.username} is slapping ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "sleep":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is sleeping.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is sleeping.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} wants to sleep with ${target.username}!`,
-              `${interaction.user.username} is sleeping with ${target.username}!`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "smile":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} smiles.`,
-              `${interaction.user.username} is smiling.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [
-              `${interaction.user.username} smiles.`,
-              `${interaction.user.username} is smiling.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} smiles at ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "smug":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} has a smug look.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} has a smug look.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} smugs at ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "stare":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} stares..`,
-              `${interaction.user.username} is staring at something`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [
-              `${interaction.user.username} stares..`,
-              `${interaction.user.username} is staring at something`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} stares at ${target.username}.`,
-              `${interaction.user.username} is staring at ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "think":
         switch (target?.id) {
           case undefined:
-            text = [
-              `${interaction.user.username} is thinking at something.`,
-              `${interaction.user.username} thinks..`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [
-              `${interaction.user.username} is thinking at something.`,
-              `${interaction.user.username} thinks..`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is thinking at ${target.username}.`,
-              `${interaction.user.username} thinks at ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "tickle":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} wants to tickle someone.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username}, you can't tickle yourself!`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is tickling ${target.username}.`,
-              `${interaction.user.username} tickles ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "triggered":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is triggered.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is triggered.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} is triggered because of ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "wave":
         switch (target?.id) {
           case interaction.user.id:
-            text = [`${interaction.user.username}, that's sad...`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} says hi to ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
       case "yes":
         switch (target?.id) {
           case undefined:
-            text = [`${interaction.user.username} is agreeing.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.none(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = [`${interaction.user.username} is agreeing.`];
+            text = langs?.[guildLang].modules.action[subCommand].target.self(
+              interaction.user.username
+            );
             await sendEmbed(text, images);
             break;
           default:
-            text = [
-              `${interaction.user.username} agrees with ${target.username}.`,
-            ];
+            text = langs?.[guildLang].modules.action[subCommand].target.default(
+              interaction.user.username,
+              target.username
+            );
             await sendEmbed(text, images);
         }
         break;
