@@ -695,7 +695,11 @@ const lang = {
     profile: {},
     search: {},
     setup: {},
-    utility: {},
+    utility: {
+      banner: {
+        no_banner: "That user doesn't have a banner.",
+      },
+    },
   },
 };
 
