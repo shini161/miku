@@ -1,3 +1,8 @@
+interface IDonateArgs {
+  name: string;
+  link: string;
+}
+
 const lang = {
   common: {
     errorOccurred: "❌ Sorry, an error has occurred!",
@@ -648,6 +653,18 @@ const lang = {
       gwreroll: {},
     },
     information: {
+      donate: {
+        embed: {
+          title: "Do you want to make a donation to us?",
+          description(...args: IDonateArgs[]) {
+            let text = "";
+            args.forEach((item) => {
+              text += `- ${item.name}[${item.link}]`;
+            });
+            return `You can donate us by using these platforms: \n${text}`;
+          },
+        },
+      },
       invite: {
         embed: {
           title: "Do you want to invite me?",
