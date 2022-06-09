@@ -22,7 +22,7 @@ export default new Command({
     switch (target?.id) {
       case undefined:
         await message.reply({
-          content: "Please mention a user!",
+          content: langs[guildLang].common.please_mention_user,
         });
         break;
       case message.author.id:
