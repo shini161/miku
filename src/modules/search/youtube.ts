@@ -1,54 +1,40 @@
 import { Command } from "../../structures/Command";
-import Colors from "../../../assets/colors.json";
 import ytsearch from "yt-search";
-import { ColorResolvable } from "discord.js";
-import getPrefix from "../../utils/getPrefix";
+import getLangGuild from "../../utils/getLang-guild";
+import langs from "../../../assets/langs/langs";
 
 export default new Command({
   name: "youtube",
   aliases: ["yt", "search-youtube", "search-yt"],
   usages: "$PREFIX$youtube <search>",
+  channel_type: "GUILD_ONLY",
   required: true,
 
-  run: async ({ client, message, args }) => {
-    try {
-      const prefix = await getPrefix(message.guildId);
+  run: async ({ message, args }) => {
+    const guildLang = await getLangGuild(message.guildId);
+    const no_results = langs[guildLang].common.no_results;
 
-      const syntaxError = {
-        title: "Syntax Error",
-        fields: [
-          {
-            name: "Usages:",
-            value: `${prefix}youtube <search>`,
-          },
-        ],
-        color: Colors.syntaxError as ColorResolvable,
-      };
+    const query = args.join(" ");
 
-      const query = args.join(" ");
-
-      if (!query)
-        return message.reply({
-          embeds: [syntaxError],
-        });
-
-      const res = await ytsearch(query).catch(() => {
-        message.reply({
-          content: "No results were found!",
-        });
-        return;
+    if (!query)
+      return message.reply({
+        content: langs[guildLang].common.missing_arguments,
       });
 
-      if (!res)
-        return message.reply({
-          content: "No results were found!",
-        });
-
-      message.channel.send({
-        content: res.videos[0].url,
+    const res = await ytsearch(query).catch(() => {
+      message.reply({
+        content: no_results,
       });
-    } catch (err) {
-      console.log(err);
-    }
+      return;
+    });
+
+    if (!res)
+      return message.reply({
+        content: no_results,
+      });
+
+    message.channel.send({
+      content: res.videos[0].url,
+    });
   },
 });
