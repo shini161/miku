@@ -20,7 +20,9 @@ const lang = {
     servers: "Servers",
     time_taken: "Time taken",
     example: "Example",
+    link_as: "Link as",
     no_results: "❌ No results were found!",
+    user_not_found: "❌ I couldn't find that user!",
     missing_arguments: "❌ Missing arguments!",
     please_mention_user: "❌ Please mention a user!",
     timeTypes: {
