@@ -16,6 +16,7 @@ const lang = {
     time_taken: "Time taken",
     no_results: "❌ No results were found!",
     missing_arguments: "❌ Missing arguments!",
+    please_mention_user: "❌ Please mention a user!",
     timeTypes: {
       years: "Years",
       year: "Year",
