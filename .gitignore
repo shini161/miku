@@ -24,8 +24,6 @@ src/modules/moderation/timeout.ts
 src/modules/moderation/unmute.ts
 src/modules/moderation/untimeout.ts
 
-src/modules/search/urban.ts
-
 src/modules/setup/disableCmd.ts
 src/modules/setup/enableCmd.ts
 src/modules/setup/setLanguage.ts
