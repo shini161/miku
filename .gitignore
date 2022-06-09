@@ -12,7 +12,6 @@ src/modules/giveaway
 src/modules/leveling
 src/modules/music
 
-src/modules/information/patreon.ts
 src/modules/information/premium.ts
 src/modules/information/wiki.ts
 
