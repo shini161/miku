@@ -659,7 +659,7 @@ const lang = {
           description(...args: IDonateArgs[]) {
             let text = "";
             args.forEach((item) => {
-              text += `- ${item.name}[${item.link}]`;
+              text += `- (${item.name})[${item.link}]`;
             });
             return `You can donate us by using these platforms: \n${text}`;
           },
