@@ -14,6 +14,8 @@ const lang = {
     server: "Server",
     servers: "Servers",
     time_taken: "Time taken",
+    no_results: "❌ No results were found!",
+    missing_arguments: "❌ Missing arguments!",
     timeTypes: {
       years: "Years",
       year: "Year",
