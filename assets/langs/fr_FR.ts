@@ -665,6 +665,14 @@ const lang = {
           },
         },
       },
+      patreon: {
+        embed: {
+          title: "Do you want to become a patreon?",
+          description(link: string) {
+            return `Click [here](${link}) to become a patreon!`;
+          },
+        },
+      },
       invite: {
         embed: {
           title: "Do you want to invite me?",
