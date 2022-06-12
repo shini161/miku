@@ -1,66 +1,45 @@
 import { Command } from "../../structures/Command";
-import { GuildChannelResolvable, Permissions } from "discord.js";
-import Colors from "../../../assets/colors.json";
-import config from "../../config.json";
-import getPrefix from "../../utils/getPrefix";
+import getLangRelative from "../../utils/getLang-relative";
+import langs from "../../../assets/langs/langs";
 
 export default new Command({
   name: "say",
   usages: "$PREFIX$say <text>",
-  required: true,
+  cooldown: 1000 * 4,
+  channel_type: "ALL",
+  required: false,
 
-  run: async ({ client, message, args }) => {
-    try {
-      const prefix = await getPrefix(message.guild.id);
+  run: async ({ message, args }) => {
+    const lang = await getLangRelative(message?.guildId, message.author.id);
 
-      const authorButton = {
-        type: 1,
-        components: [
-          {
-            type: 2,
-            label: `${message.author.tag}`,
-            style: 2,
-            disabled: true,
-            custom_id: "SAY_CMD_MESSAGE_AUTHOR",
-          },
-        ],
-      };
+    const authorButton = {
+      type: 1,
+      components: [
+        {
+          type: 2,
+          label: `${message.author.tag}`,
+          style: 2,
+          disabled: true,
+          custom_id: "SAY_CMD_MESSAGE_AUTHOR",
+        },
+      ],
+    };
 
-      const syntaxError = {
-        title: "Syntax Error",
-        fields: [
-          {
-            name: "Usages:",
-            value: `${prefix}say <text>`,
-          },
-        ],
-        colors: Colors.celestialBlue,
-      };
-
-      const text = args.join(" ");
-      if (!text)
-        return message.reply({
-          embeds: [syntaxError],
-        });
-      const content = text.length >= 512 ? text.slice(0, 512) + "..." : text;
-
-      message.channel.send({
-        content,
-        allowedMentions: { parse: [] },
-        components: [authorButton],
+    const query = args.join(" ");
+    if (!query)
+      return message.reply({
+        content: langs[lang].common.missing_arguments,
       });
+    const content = query.length >= 512 ? query.slice(0, 512) + "..." : query;
 
-      if (
-        message.guild.me
-          .permissionsIn(message.channel as GuildChannelResolvable)
-          .has(Permissions.FLAGS.MANAGE_MESSAGES) ||
-        message.guild.me.permissions.has(Permissions.FLAGS.ADMINISTRATOR)
-      )
-        message.delete().catch((err) => {
-          console.log(err);
-        });
-    } catch (err) {
-      console.log(err);
-    }
+    message.channel.send({
+      content,
+      allowedMentions: { parse: [] },
+      components: [authorButton],
+    });
+
+    await message.delete().catch(() => {
+      return;
+    });
   },
 });
