@@ -536,7 +536,7 @@ export default new SlashCommand({
   run: async ({ interaction }) => {
     const subCommand = interaction.options.getSubcommand();
     const target = interaction.options.getUser("target");
-    const guildLang = await getLangGuild(interaction.guildId);
+    const lang = await getLangGuild(interaction.guildId);
 
     let text: string[];
     let images = ActionData?.[subCommand].images;
@@ -546,19 +546,19 @@ export default new SlashCommand({
       case "bite":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -568,19 +568,19 @@ export default new SlashCommand({
       case "blush":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -590,19 +590,19 @@ export default new SlashCommand({
       case "boop":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -612,19 +612,19 @@ export default new SlashCommand({
       case "bored":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -634,13 +634,13 @@ export default new SlashCommand({
       case "bully":
         switch (target?.id) {
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -650,19 +650,19 @@ export default new SlashCommand({
       case "cry":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -672,19 +672,19 @@ export default new SlashCommand({
       case "cuddle":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -694,19 +694,19 @@ export default new SlashCommand({
       case "dance":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -716,19 +716,19 @@ export default new SlashCommand({
       case "die":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -738,19 +738,19 @@ export default new SlashCommand({
       case "facepalm":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -760,13 +760,13 @@ export default new SlashCommand({
       case "greet":
         switch (target?.id) {
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -776,19 +776,19 @@ export default new SlashCommand({
       case "happy":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -798,13 +798,13 @@ export default new SlashCommand({
       case "highfive":
         switch (target?.id) {
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -814,13 +814,13 @@ export default new SlashCommand({
       case "hold":
         switch (target?.id) {
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -830,19 +830,19 @@ export default new SlashCommand({
       case "hug":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -852,13 +852,13 @@ export default new SlashCommand({
       case "kill":
         switch (target?.id) {
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -868,7 +868,7 @@ export default new SlashCommand({
       case "kiss":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             images = [
@@ -877,7 +877,7 @@ export default new SlashCommand({
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             images = [
@@ -886,7 +886,7 @@ export default new SlashCommand({
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -896,19 +896,19 @@ export default new SlashCommand({
       case "laugh":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -918,13 +918,13 @@ export default new SlashCommand({
       case "lick":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             images = [
@@ -933,7 +933,7 @@ export default new SlashCommand({
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -943,19 +943,19 @@ export default new SlashCommand({
       case "no":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -965,19 +965,19 @@ export default new SlashCommand({
       case "nom":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -987,19 +987,19 @@ export default new SlashCommand({
       case "nuzzle":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1009,19 +1009,19 @@ export default new SlashCommand({
       case "pat":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1031,19 +1031,19 @@ export default new SlashCommand({
       case "poke":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1053,13 +1053,13 @@ export default new SlashCommand({
       case "punch":
         switch (target?.id) {
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1069,19 +1069,19 @@ export default new SlashCommand({
       case "run":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1091,19 +1091,19 @@ export default new SlashCommand({
       case "sad":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1113,13 +1113,13 @@ export default new SlashCommand({
       case "shoot":
         switch (target?.id) {
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1129,19 +1129,19 @@ export default new SlashCommand({
       case "shy":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1151,19 +1151,19 @@ export default new SlashCommand({
       case "sip":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1173,13 +1173,13 @@ export default new SlashCommand({
       case "slap":
         switch (target?.id) {
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1189,19 +1189,19 @@ export default new SlashCommand({
       case "sleep":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1211,19 +1211,19 @@ export default new SlashCommand({
       case "smile":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1233,19 +1233,19 @@ export default new SlashCommand({
       case "smug":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1255,19 +1255,19 @@ export default new SlashCommand({
       case "stare":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1277,19 +1277,19 @@ export default new SlashCommand({
       case "think":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1299,19 +1299,19 @@ export default new SlashCommand({
       case "tickle":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1321,19 +1321,19 @@ export default new SlashCommand({
       case "triggered":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1343,13 +1343,13 @@ export default new SlashCommand({
       case "wave":
         switch (target?.id) {
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
@@ -1359,19 +1359,19 @@ export default new SlashCommand({
       case "yes":
         switch (target?.id) {
           case undefined:
-            text = langs?.[guildLang].modules.action[subCommand].target.none(
+            text = langs?.[lang].modules.action[subCommand].target.none(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           case interaction.user.id:
-            text = langs?.[guildLang].modules.action[subCommand].target.self(
+            text = langs?.[lang].modules.action[subCommand].target.self(
               interaction.user.username
             );
             await sendEmbed(text, images);
             break;
           default:
-            text = langs?.[guildLang].modules.action[subCommand].target.default(
+            text = langs?.[lang].modules.action[subCommand].target.default(
               interaction.user.username,
               target.username
             );
