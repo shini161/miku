@@ -740,6 +740,11 @@ const lang = {
           },
         },
       },
+      translate: {
+        embed: {
+          title: "Translated Text",
+        },
+      },
       random: {
         waifu: {
           embed: {
