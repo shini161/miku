@@ -89,12 +89,12 @@ export default new Command({
               inline: true,
             },
             {
-              name: `${userInfoData.joined_at}:`,
+              name: `${langs[lang].common.joined_at}:`,
               value: data.joined,
               inline: true,
             },
             {
-              name: `${userInfoData.created_at}:`,
+              name: `${langs[lang].common.created_at}:`,
               value: data.created,
               inline: true,
             },
