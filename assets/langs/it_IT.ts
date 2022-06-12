@@ -8,6 +8,8 @@ const lang = {
     errorOccurred: "❌ Sorry, an error has occurred!",
     version: "Version",
     library: "Library",
+    max: "Max",
+    limit: "Limit",
     owner: "Owner",
     total: "Total",
     user: "User",
@@ -735,6 +737,25 @@ const lang = {
             title: "Its a heads!",
             won_desc: "The coin landed on heads, you won the bet",
             lost_desc: "The coin landed on heads, you lost the bet",
+          },
+        },
+      },
+      random: {
+        waifu: {
+          embed: {
+            title: "Random Waifu",
+          },
+        },
+        neko: {
+          embed: {
+            title: "Random Neko",
+          },
+        },
+        number: {
+          embed: {
+            title(number: number) {
+              return `Your random number is: ${number}`;
+            },
           },
         },
       },
