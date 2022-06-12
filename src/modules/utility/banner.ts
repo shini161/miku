@@ -10,7 +10,7 @@ export default new Command({
   name: "banner",
   usages: "$PREFIX$banner [@user]\n$PREFIX$banner [userID]",
   channel_type: "ALL",
-  cooldown: 1000 * 8,
+  cooldown: 1000 * 4,
   required: false,
 
   run: async ({ client, message, args }) => {

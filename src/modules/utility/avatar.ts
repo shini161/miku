@@ -11,7 +11,7 @@ export default new Command({
   aliases: ["pic", "pfp", "av"],
   usages: "$PREFIX$avatar [@user]\n$PREFIX$avatar [userID]",
   channel_type: "ALL",
-  cooldown: 1000 * 8,
+  cooldown: 1000 * 4,
   required: false,
 
   run: async ({ client, message, args }) => {
