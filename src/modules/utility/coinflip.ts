@@ -1,84 +1,69 @@
 import { Command } from "../../structures/Command";
 import { ColorResolvable } from "discord.js";
-import Colors from "../../../assets/colors.json";
-import config from "../../config.json";
+import getLangRelative from "../../utils/getLang-relative";
+import langs from "../../../assets/langs/langs";
 
 export default new Command({
   name: "coinflip",
   aliases: ["coin-flip", "flip"],
   usages: "$PREFIX$coinflip <tails/head>",
-  required: true,
+  cooldown: 1000 * 4,
+  channel_type: "ALL",
+  required: false,
 
-  run: async ({ client, message, args }) => {
-    try {
-      const prefix = config.prefix;
+  run: async ({ message, args }) => {
+    const lang = await getLangRelative(message?.guildId, message.author.id);
+    const embedData = langs[lang].modules.utility.coinflip.embeds;
+    const tailsWin = {
+      title: embedData.tails.title,
+      description: embedData.tails.won_desc,
+      color: "GREEN" as ColorResolvable,
+    };
+    const tailsLoose = {
+      title: embedData.heads.title,
+      description: embedData.tails.lost_desc,
+      color: "RED" as ColorResolvable,
+    };
+    const headsWin = {
+      title: embedData.heads.title,
+      description: embedData.heads.won_desc,
+      color: "GREEN" as ColorResolvable,
+    };
+    const headsLoose = {
+      title: embedData.tails.title,
+      description: embedData.heads.lost_desc,
+      color: "RED" as ColorResolvable,
+    };
+    let options = ["tails", "heads"];
+    let coin = options[Math.floor(Math.random() * options.length)];
 
-      const syntaxError = {
-        title: "Syntax Error",
-        fields: [
-          {
-            name: "Usage:",
-            value: `${prefix}coinflip <tails/head>`,
-          },
-        ],
-        color: Colors.syntaxError as ColorResolvable,
-      };
+    if (!args[0])
+      return message.channel.send({
+        content: langs[lang].common.missing_arguments,
+      });
+    const bet = args[0].toLowerCase();
+    if (!options.includes(bet))
+      return message.channel.send({
+        content: langs[lang].common.invalid_arguments,
+      });
 
-      const headsWin = {
-        title: "Its a heads!",
-        description: "The coin landed on heads, you won the bet",
-        color: "GREEN" as ColorResolvable,
-      };
-      const tailsWin = {
-        title: "Its a tails!",
-        description: "The coin landed on tails, you won the bet",
-        color: "GREEN" as ColorResolvable,
-      };
-      const tailsLoose = {
-        title: "Its a heads!",
-        description: "The coin landed on heads, you lost the bet",
-        color: "RED" as ColorResolvable,
-      };
-      const headsLoose = {
-        title: "Its a tails",
-        description: "The coin landed on tails, you lost the bet",
-        color: "RED" as ColorResolvable,
-      };
-
-      let options = ["tails", "heads"];
-
-      let coin = options[Math.floor(Math.random() * options.length)];
-      if (!args[0])
-        return message.channel.send({
-          embeds: [syntaxError],
+    if (coin === bet) {
+      if (bet === "tails")
+        return message.reply({
+          embeds: [tailsWin],
         });
-      const bet = args[0].toLowerCase();
-      if (bet !== "tails" && bet !== "heads")
-        return message.channel.send({
-          embeds: [syntaxError],
+      if (bet === "heads")
+        return message.reply({
+          embeds: [headsWin],
         });
-
-      if (coin === bet) {
-        if (bet === "tails")
-          return message.channel.send({
-            embeds: [tailsWin],
-          });
-        if (bet === "heads")
-          return message.channel.send({
-            embeds: [headsWin],
-          });
-      } else {
-        if (bet === "tails")
-          return message.channel.send({
-            embeds: [tailsLoose],
-          });
-        if (bet === "heads")
-          return message.channel.send({
-            embeds: [headsLoose],
-          });
-      }
-    } catch (err) {
-      console.log(err);
     }
+    if (bet === "tails")
+      return message.reply({
+        embeds: [tailsLoose],
+      });
+    if (bet === "heads")
+      return message.reply({
+        embeds: [headsLoose],
+      });
   },
 });
