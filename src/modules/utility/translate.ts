@@ -2,53 +2,39 @@ import { Command } from "../../structures/Command";
 import { ColorResolvable } from "discord.js";
 import translate from "@iamtraction/google-translate";
 import Colors from "../../../assets/colors.json";
-import config from "../../config.json";
-import getPrefix from "../../utils/getPrefix";
+import getLangRelative from "../../utils/getLang-relative";
+import langs from "../../../assets/langs/langs";
 
 export default new Command({
   name: "translate",
   usages: "$PREFIX$translate <text>",
-  required: true,
+  cooldown: 1000 * 4,
+  channel_type: "ALL",
+  required: false,
 
-  run: async ({ client, message, args }) => {
-    try {
-      const prefix = await getPrefix(message.guild.id);
-      const color = Colors.celestialBlue;
-      const query = args.join(" ");
+  run: async ({ message, args }) => {
+    const lang = await getLangRelative(message?.guildId, message.author.id);
+    const color = Colors.celestialBlue;
+    const query = args.join(" ").toLowerCase();
 
-      const syntaxError = {
-        title: "Syntax Error",
-        fields: [
-          {
-            name: "Usages:",
-            value: `${prefix}translate <text>`,
-          },
-        ],
-        color: Colors.syntaxError as ColorResolvable,
-      };
-
-      if (!query)
-        return message.reply({
-          embeds: [syntaxError],
-        });
-
-      const res = await translate(query, { to: "en" });
-      const text =
-        res.text.length >= 512
-          ? res.text.slice(0, 512) + "..."
-          : res.text.slice(0, 512);
-
-      const embed = {
-        title: "Translated Text",
-        description: text,
-        color: color as ColorResolvable,
-      };
-
-      return message.channel.send({
-        embeds: [embed],
+    if (!query)
+      return message.reply({
+        content: langs[lang].common.missing_arguments,
       });
-    } catch (err) {
-      console.log(err);
-    }
+
+    const text = await translate(query, { to: "en" }).then((res) => {
+      if (res.text.length >= 512) return res.text.slice(0, 512) + "...";
+      return res.text.slice(0, 512);
+    });
+
+    const embed = {
+      title: langs[lang].modules.utility.translate.embed.title,
+      description: text,
+      color: color as ColorResolvable,
+    };
+
+    message.channel.send({
+      embeds: [embed],
+    });
   },
 });
