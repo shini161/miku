@@ -52,6 +52,12 @@ const lang = {
       milliseconds: "Milliseconds",
       millisecond: "Millisecond",
     },
+    missing_permission: {
+      command: {
+        client: "I don't have permission to do that!",
+        user: "You don't have permission to run this command!",
+      },
+    },
   },
   modules: {
     action: {
@@ -768,6 +774,9 @@ const lang = {
             },
           },
         },
+      },
+      listRoles: {
+        noRoles: "This guild doesn't have any role!",
       },
       userinfo: {
         unavailable: "Unavailable",
