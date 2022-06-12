@@ -18,23 +18,23 @@ export default new Command({
     let images = ActionData[name].images;
     const color = Colors.celestialBlue;
     const target = message.mentions.members.first();
-    const guildLang = await getLangGuild(message.guildId);
+    const lang = await getLangGuild(message.guildId);
 
     switch (target?.id) {
       case undefined:
-        text = langs?.[guildLang].modules.action[name].target.none(
+        text = langs?.[lang].modules.action[name].target.none(
           message.author.username
         );
         await sendEmbed(text, images);
         break;
       case message.author.id:
-        text = langs?.[guildLang].modules.action[name].target.self(
+        text = langs?.[lang].modules.action[name].target.self(
           message.author.username
         );
         await sendEmbed(text, images);
         break;
       default:
-        text = langs?.[guildLang].modules.action[name].target.default(
+        text = langs?.[lang].modules.action[name].target.default(
           message.author.username,
           target.user.username
         );

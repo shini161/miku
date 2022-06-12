@@ -14,14 +14,13 @@ export default new Command({
 
   run: async ({ message, args }) => {
     const color = Colors.celestialBlue;
-    const guildLang = await getLangGuild(message.guildId);
-    const no_results = langs[guildLang].common.no_results;
+    const lang = await getLangGuild(message.guildId);
 
     const query = args.join(" ");
 
     if (!query)
       return message.reply({
-        content: langs[guildLang].common.missing_arguments,
+        content: langs[lang].common.missing_arguments,
       });
 
     const res = await axios
@@ -35,14 +34,14 @@ export default new Command({
       })
       .catch(() => {
         message.reply({
-          content: no_results,
+          content: langs[lang].common.no_results,
         });
         return;
       });
 
     if (!res)
       return message.reply({
-        content: no_results,
+        content: langs[lang].common.no_results,
       });
 
     const manga = res.data[0];

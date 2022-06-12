@@ -14,14 +14,13 @@ export default new Command({
 
   run: async ({ message, args }) => {
     const color = Colors.celestialBlue;
-    const guildLang = await getLangGuild(message.guildId);
-    const no_results = langs[guildLang].common.no_results;
+    const lang = await getLangGuild(message.guildId);
 
     const query = args.join(" ");
 
     if (!query)
       return message.reply({
-        content: langs[guildLang].common.missing_arguments,
+        content: langs[lang].common.missing_arguments,
       });
 
     try {
@@ -33,7 +32,7 @@ export default new Command({
         description: res.definition,
         fields: [
           {
-            name: langs[guildLang].common.example,
+            name: langs[lang].common.example,
             value: `*${res.example}*`,
           },
         ],
@@ -48,7 +47,7 @@ export default new Command({
       });
     } catch (err) {
       return message.reply({
-        content: langs[guildLang].common.no_results,
+        content: langs[lang].common.no_results,
       });
     }
   },
