@@ -9,6 +9,7 @@ const name = "shy"; // command name
 export default new Command({
   name,
   usages: `$PREFIX$${name} [@user]`,
+  cooldown: "Module",
   channel_type: "GUILD_ONLY",
   required: true,
 

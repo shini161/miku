@@ -14,6 +14,7 @@ import config from "../../config.json";
 import { version } from ".././../../package.json";
 import getLangUser from "../../utils/getLang-user";
 import langs from "../../../assets/langs/langs";
+import reactOnDM from "../../utils/reactOnDM";
 
 const globPromise = promisify(glob);
 
