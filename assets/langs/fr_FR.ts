@@ -24,6 +24,7 @@ const lang = {
     no_results: "❌ No results were found!",
     user_not_found: "❌ I couldn't find that user!",
     missing_arguments: "❌ Missing arguments!",
+    invalid_arguments: "❌ Invalid arguments!",
     please_mention_user: "❌ Please mention a user!",
     timeTypes: {
       years: "Years",
@@ -698,6 +699,41 @@ const lang = {
     utility: {
       banner: {
         no_banner: "That user doesn't have a banner.",
+      },
+      "8ball": [
+        "Yes.",
+        "It is certain.",
+        "It is decidedly so.",
+        "Without a doubt.",
+        "Yes definitely.",
+        "You may rely on it.",
+        "As I see it, yes.",
+        "Most likely.",
+        "Outlook good.",
+        "Signs point to yes.",
+        "Reply hazy, try again.",
+        "Ask again later.",
+        "Better not tell you now...",
+        "Cannot predict now.",
+        "Concentrate and ask again.",
+        "Don't count on it.",
+        "My reply is no.",
+        "Outlook not so good...",
+        "Very doubtful.",
+      ],
+      coinflip: {
+        embeds: {
+          tails: {
+            title: "Its a tails!",
+            won_desc: "The coin landed on tails, you won the bet",
+            lost_desc: "The coin landed on tails, you lost the bet",
+          },
+          heads: {
+            title: "Its a heads!",
+            won_desc: "The coin landed on heads, you won the bet",
+            lost_desc: "The coin landed on heads, you lost the bet",
+          },
+        },
       },
     },
   },
