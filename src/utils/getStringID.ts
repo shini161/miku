@@ -1,4 +1,4 @@
-import clientError from "../../utils/clientError";
+import clientError from "./clientError";
 
 function getUserId(argument: string | undefined, ifNone?: string) {
   if (argument) {
