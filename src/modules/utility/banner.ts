@@ -3,7 +3,7 @@ import { ColorResolvable } from "discord.js";
 import Colors from "../../../assets/colors.json";
 import getLangRelative from "../../utils/getLang-relative";
 import langs from "../../../assets/langs/langs";
-import { getUserId } from "./getStringID";
+import { getUserId } from "../../utils/getStringID";
 import reactOnDM from "../../utils/reactOnDM";
 
 export default new Command({
