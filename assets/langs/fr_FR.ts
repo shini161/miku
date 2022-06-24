@@ -808,6 +808,9 @@ const lang = {
       listRoles: {
         noRoles: "This guild doesn't have any role!",
       },
+      listEmojis: {
+        noEmojis: "This guild doesn't have any emoji!",
+      },
       userinfo: {
         unavailable: "Unavailable",
         invisible: "Invisible",
