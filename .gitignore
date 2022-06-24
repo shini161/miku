@@ -13,7 +13,6 @@ src/modules/leveling
 src/modules/music
 
 src/modules/information/premium.ts
-src/modules/information/wiki.ts
 
 src/modules/moderation/mute.ts
 src/modules/moderation/slowmode.ts
