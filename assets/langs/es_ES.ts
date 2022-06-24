@@ -702,6 +702,11 @@ const lang = {
       gwreroll: {},
     },
     information: {
+      wiki: {
+        home(url: string) {
+          return `🔗 ${url}`;
+        },
+      },
       donate: {
         embed: {
           title: "Do you want to make a donation to us?",
